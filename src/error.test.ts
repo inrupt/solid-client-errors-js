@@ -17,11 +17,14 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+import { DataFactory } from "n3";
 import {
   SolidError,
   ThingExpectedError,
   FetchError,
   NotImplementedError,
+  ValidPropertyUrlExpectedError,
+  isNamedNode,
 } from "./error";
 
 describe("SolidError", () => {
@@ -233,5 +236,74 @@ describe("NotImplementedError", () => {
     expect(err.message).toStrictEqual(
       "Testing error : read more at https://inrupt.com/not-implemented-error."
     );
+  });
+});
+
+describe("ValidPropertyUrlExpectedError", () => {
+  const receivedValue = "value";
+  it("can get url of error", () => {
+    const err = new ValidPropertyUrlExpectedError(
+      "Testing error",
+      receivedValue
+    );
+    expect(err.url).toStrictEqual(
+      "https://inrupt.com/valid-property-url-expected-error"
+    );
+  });
+
+  it("can add cause of error", () => {
+    const err = new ValidPropertyUrlExpectedError(
+      "Testing error",
+      receivedValue
+    );
+    expect(err.cause).toStrictEqual("Testing error");
+  });
+
+  it("can add child of error", () => {
+    const childErr = new ValidPropertyUrlExpectedError(
+      "Child error",
+      receivedValue
+    );
+    const err = new ValidPropertyUrlExpectedError(
+      "Testing error",
+      receivedValue,
+      childErr
+    );
+    expect(err.child).toStrictEqual(childErr);
+  });
+
+  it("correct error message", () => {
+    const err = new ValidPropertyUrlExpectedError(
+      "Testing error",
+      receivedValue
+    );
+    expect(err.message).toStrictEqual(
+      "Testing error : read more at https://inrupt.com/valid-property-url-expected-error. Expected a valid URL to identify a property, but received: [value]."
+    );
+  });
+
+  it("recieves namedNode", () => {
+    const namedNode = DataFactory.namedNode(
+      "https://arbitrary.pod/resource#node"
+    );
+    const err = new ValidPropertyUrlExpectedError("Testing error", namedNode);
+    expect(err.message).toStrictEqual(
+      "Testing error : read more at https://inrupt.com/valid-property-url-expected-error. Expected a valid URL to identify a property, but received: [https://arbitrary.pod/resource#node]."
+    );
+  });
+});
+
+describe("isNamedNode", () => {
+  it("recognises a NamedNode", () => {
+    expect(
+      isNamedNode(DataFactory.namedNode("https://arbitrary.pod/resource#node"))
+    ).toBe(true);
+  });
+
+  it("recognises non-NamedNodes", () => {
+    expect(isNamedNode(DataFactory.blankNode())).toBe(false);
+    expect(isNamedNode(DataFactory.literal("Arbitrary value"))).toBe(false);
+    expect(isNamedNode(DataFactory.variable("Arbitrary name"))).toBe(false);
+    expect(isNamedNode("Arbitrary string")).toBe(false);
   });
 });

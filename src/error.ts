@@ -16,6 +16,31 @@
 // HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+import { NamedNode, Term } from "@rdfjs/types";
+
+/**
+ * @internal Library users shouldn't need to be exposed to raw Terms.
+ * @param value The value that might or might not be a Term.
+ * @returns Whether `value` is a Term.
+ */
+export function isTerm<T>(value: T | Term): value is Term {
+  return (
+    value !== null &&
+    typeof value === "object" &&
+    typeof (value as Term).termType === "string" &&
+    typeof (value as Term).value === "string" &&
+    typeof (value as Term).equals === "function"
+  );
+}
+
+/**
+ * @internal Library users shouldn't need to be exposed to raw NamedNodes.
+ * @param value The value that might or might not be a Named Node.
+ * @returns Whether `value` is a Named Node.
+ */
+export function isNamedNode<T>(value: T | NamedNode): value is NamedNode {
+  return isTerm(value) && value.termType === "NamedNode";
+}
 
 export class SolidError extends Error {
   cause: string;
@@ -49,7 +74,7 @@ export class ThingExpectedError extends SolidError {
 
   constructor(cause: string, receivedValue: any, child?: Error) {
     const url = "https://inrupt.com/thing-expected-error";
-    super(cause, child);
+    super(cause);
     this.url = url;
     this.cause = cause;
     this.receivedValue = receivedValue;
@@ -129,16 +154,31 @@ export class NotImplementedError extends Error {
   }
 }
 
-// export class ValidPropertyUrlExpectedError extends SolidError {
-//   url = "https://inrupt.com/valid-porperty-url-expected-error";
+export class ValidPropertyUrlExpectedError extends SolidError {
+  cause: string;
 
-//   constructor(cause, child, receivedValue) {
-//     const value = isNamedNode(receivedValue)
-//     ? receivedValue.value
-//     : receivedValue;
-//     const message = `Expected a valid URL to identify a property, but received: [${value}].`;
-//     super(message);
-//     this.url = url;
-//     this.receivedProperty = value;
-//   }
-// }
+  url: string;
+
+  child?: Error;
+
+  receivedValue: unknown;
+
+  constructor(cause: string, receivedValue: any, child?: Error) {
+    const url = "https://inrupt.com/valid-property-url-expected-error";
+    const value = isNamedNode(receivedValue)
+      ? receivedValue.value
+      : receivedValue;
+
+    super(cause);
+    this.message = `${cause} : read more at ${url}.`;
+    this.message += ` Expected a valid URL to identify a property, but received: [${value}].`;
+    this.url = url;
+    this.cause = cause;
+    this.receivedValue = value;
+
+    if (child) {
+      this.child = child;
+      this.message += ` Preceding error : ${child.message}`;
+    }
+  }
+}
