@@ -16,42 +16,10 @@
 // HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-const imports = require("./index.js");
 
-describe("SolidError", () => {
-  it("can get url of error", () => {
-    const err = new imports.SolidError("Testing error");
-    console.log(err);
-    expect(err.url).toStrictEqual(
-      "https://inrupt.com/generic-error-url"
-    );
-  });
-
-  it("can add cause of error", () => {
-    const err = new imports.SolidError("Testing error");
-    expect(err.cause).toStrictEqual(
-      "Testing error"
-    );
-  });
-
-  it("can add child of error", () => {
-    const childErr = new imports.SolidError("Child error");
-    const err = new imports.SolidError("Testing error", childErr);
-    expect(err.child).toStrictEqual(
-      childErr
-    );
-  });
-
-  it("correct error message", () => {
-    const err = new imports.SolidError("Testing error");
-    expect(err.message).toStrictEqual(
-      "Testing error : read more at https://inrupt.com/generic-error-url."
-    );
-  });
-
-  it("empty initialise", () => {
-    const err = new imports.SolidError();
-    expect(err.cause).toBeUndefined();
-    expect(err.child).toBeUndefined();
-  });
-});
+export {
+  SolidError,
+  ThingExpectedError,
+  FetchError,
+  NotImplementedError,
+} from "./error";
