@@ -69,7 +69,7 @@
         // The source files of everything listed under `exports` in our package.json
         // (i.e. public API's that should be documented) should be listed here:
         "src/index.ts",
-        "src/module/index.ts",
+        "src/index.ts",
       ],
       "exclude": [
         "node_modules/**",
