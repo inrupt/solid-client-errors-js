@@ -32,39 +32,6 @@ In more detail, you will need to:
 - This project also has the publish-website action disabled for the same reason; enable it in your
   project once it is ready to be published.
 
-### ENV variables for your GitHub repo
-
-You will need the following variables for the CD process:
-
-- NPM_TOKEN
-
-You will need a number of variables for the CI process, which will allow automated end-to-end tests
-to log in and manipulate a pod. If you do not need to do any logged-in end-to-end tests, you can
-skip this and remove the logged-in tests.
-
-End-to-end tests:
-
-- E2E_TEST_ESS_COMPAT_PROD_CLIENT_ID
-- E2E_TEST_ESS_COMPAT_PROD_CLIENT_SECRET
-- E2E_TEST_ESS_COMPAT_PROD_IDP_URL
-- E2E_TEST_ESS_COMPAT_PROD_POD
-- E2E_TEST_ESS_COMPAT_PROD_REFRESH_TOKEN
-- E2E_TEST_ESS_PROD_CLIENT_ID
-- E2E_TEST_ESS_PROD_CLIENT_SECRET
-- E2E_TEST_ESS_PROD_COGNITO_PASSWORD
-- E2E_TEST_ESS_PROD_COGNITO_USER
-- E2E_TEST_ESS_PROD_IDP_URL
-- E2E_TEST_ESS_PROD_POD
-- E2E_TEST_ESS_PROD_REFRESH_TOKEN
-- TESTCAFE_ESS_DEV_COGNITO_PASSWORD
-- TESTCAFE_ESS_DEV_COGNITO_USER
-- TESTCAFE_ESS_DEV_IDP_URL
-- TESTCAFE_ESS_DEV_POD
-- TESTCAFE_ESS_PROD_COGNITO_PASSWORD
-- TESTCAFE_ESS_PROD_COGNITO_USER
-- TESTCAFE_ESS_PROD_IDP_URL
-- TESTCAFE_ESS_PROD_POD
-
 ## Changelog
 
 See [the release notes](https://github.com/inrupt/template-ts/blob/main/CHANGELOG.md).
