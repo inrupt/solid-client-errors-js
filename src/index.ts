@@ -22,4 +22,5 @@ export {
   ThingExpectedError,
   FetchError,
   NotImplementedError,
+  ValidPropertyUrlExpectedError,
 } from "./error";
