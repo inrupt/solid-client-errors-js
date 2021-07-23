@@ -17,10 +17,20 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import { SolidError } from "./error";
+import {
+  SolidError,
+  ThingExpectedError,
+  FetchError,
+  NotImplementedError,
+  ValidPropertyUrlExpectedError,
+} from "./error";
 
 describe("Index exports", () => {
   test("exposes expected things", () => {
     expect(SolidError).toBeDefined();
+    expect(ThingExpectedError).toBeDefined();
+    expect(FetchError).toBeDefined();
+    expect(NotImplementedError).toBeDefined();
+    expect(ValidPropertyUrlExpectedError).toBeDefined();
   });
 });
