@@ -43,57 +43,57 @@ export function isNamedNode<T>(value: T | NamedNode): value is NamedNode {
 }
 
 export class SolidError extends Error {
-  cause: string;
+  description: string;
 
   url: string;
 
-  child?: Error;
+  cause?: Error;
 
-  constructor(cause: string, child?: Error) {
+  constructor(description: string, cause?: Error) {
     super();
     const url = "https://inrupt.com/generic-error";
-    this.cause = cause;
+    this.description = description;
     this.url = url;
-    this.message = `${cause} : read more at ${url}.`;
+    this.message = `${description} : read more at ${url}.`;
 
-    if (child) {
-      this.child = child;
-      this.message += ` Preceding error : ${child.message}`;
+    if (cause) {
+      this.cause = cause;
+      this.message += ` Preceding error : ${cause.message}`;
     }
   }
 }
 
 export class ThingExpectedError extends SolidError {
-  cause: string;
+  description: string;
 
   url: string;
 
-  child?: Error;
+  cause?: Error;
 
   receivedValue: unknown;
 
-  constructor(cause: string, receivedValue: any, child?: Error) {
+  constructor(description: string, receivedValue: any, cause?: Error) {
     const url = "https://inrupt.com/thing-expected-error";
-    super(cause);
+    super(description);
     this.url = url;
-    this.cause = cause;
+    this.description = description;
     this.receivedValue = receivedValue;
-    this.message = `${cause} : read more at ${url}.`;
+    this.message = `${description} : read more at ${url}.`;
     this.message += ` Expected a Thing, but received: ${receivedValue}.`;
 
-    if (child) {
-      this.child = child;
-      this.message += ` Preceding error : ${child.message}`;
+    if (cause) {
+      this.cause = cause;
+      this.message += ` Preceding error : ${cause.message}`;
     }
   }
 }
 
 export class FetchError extends SolidError {
-  cause: string;
+  description: string;
 
   url: string;
 
-  child?: Error;
+  cause?: Error;
 
   urlReturned: string;
 
@@ -106,13 +106,13 @@ export class FetchError extends SolidError {
   response: string;
 
   constructor(
-    cause: string,
+    description: string,
     urlReturned: string,
     statusCode: string,
     statusText: string,
     fetchDescription: string,
     response: string,
-    child?: Error
+    cause?: Error
   ) {
     const url = "https://inrupt.com/fetch-error";
     super(statusText);
@@ -122,63 +122,63 @@ export class FetchError extends SolidError {
     this.statusCode = statusCode;
     this.statusText = statusText;
     this.fetchDescription = fetchDescription;
-    this.cause = cause;
-    this.message = `${cause} : read more at ${url}.`;
+    this.description = description;
+    this.message = `${description} : read more at ${url}.`;
     this.message += ` Unable to fetch ${fetchDescription}: ${urlReturned} returned [${statusCode}] ${statusText}`;
 
-    if (child) {
-      this.child = child;
-      this.message += ` Preceding error : ${child.message}`;
+    if (cause) {
+      this.cause = cause;
+      this.message += ` Preceding error : ${cause.message}`;
     }
   }
 }
 
 export class NotImplementedError extends Error {
-  cause: string;
+  description: string;
 
   url: string;
 
-  child?: Error;
+  cause?: Error;
 
-  constructor(cause: string, child?: Error) {
+  constructor(description: string, cause?: Error) {
     const url = "https://inrupt.com/not-implemented-error";
     super();
-    this.message = `${cause} : read more at ${url}.`;
-    this.cause = cause;
+    this.message = `${description} : read more at ${url}.`;
+    this.description = description;
     this.url = url;
 
-    if (child) {
-      this.child = child;
-      this.message += ` Preceding error : ${child.message}`;
+    if (cause) {
+      this.cause = cause;
+      this.message += ` Preceding error : ${cause.message}`;
     }
   }
 }
 
 export class ValidPropertyUrlExpectedError extends SolidError {
-  cause: string;
+  description: string;
 
   url: string;
 
-  child?: Error;
+  cause?: Error;
 
   receivedValue: unknown;
 
-  constructor(cause: string, receivedValue: any, child?: Error) {
+  constructor(description: string, receivedValue: any, cause?: Error) {
     const url = "https://inrupt.com/valid-property-url-expected-error";
     const value = isNamedNode(receivedValue)
       ? receivedValue.value
       : receivedValue;
 
-    super(cause);
-    this.message = `${cause} : read more at ${url}.`;
+    super(description);
+    this.message = `${description} : read more at ${url}.`;
     this.message += ` Expected a valid URL to identify a property, but received: [${value}].`;
     this.url = url;
-    this.cause = cause;
+    this.description = description;
     this.receivedValue = value;
 
-    if (child) {
-      this.child = child;
-      this.message += ` Preceding error : ${child.message}`;
+    if (cause) {
+      this.cause = cause;
+      this.message += ` Preceding error : ${cause.message}`;
     }
   }
 }

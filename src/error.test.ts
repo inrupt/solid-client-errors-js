@@ -33,15 +33,15 @@ describe("SolidError", () => {
     expect(err.url).toStrictEqual("https://inrupt.com/generic-error");
   });
 
-  it("can add cause of error", () => {
+  it("can add description of error", () => {
     const err = new SolidError("Testing error");
-    expect(err.cause).toStrictEqual("Testing error");
+    expect(err.description).toStrictEqual("Testing error");
   });
 
-  it("can add child of error", () => {
-    const childErr = new SolidError("Child error");
-    const err = new SolidError("Testing error", childErr);
-    expect(err.child).toStrictEqual(childErr);
+  it("can add cause of error", () => {
+    const causeErr = new SolidError("cause error");
+    const err = new SolidError("Testing error", causeErr);
+    expect(err.cause).toStrictEqual(causeErr);
   });
 
   it("correct error message", () => {
@@ -59,9 +59,9 @@ describe("ThingExpectedError", () => {
     expect(err.url).toStrictEqual("https://inrupt.com/thing-expected-error");
   });
 
-  it("can add cause of error", () => {
+  it("can add description of error", () => {
     const err = new ThingExpectedError("Testing error", receivedValue);
-    expect(err.cause).toStrictEqual("Testing error");
+    expect(err.description).toStrictEqual("Testing error");
   });
 
   it("can add received value", () => {
@@ -69,14 +69,14 @@ describe("ThingExpectedError", () => {
     expect(err.receivedValue).toStrictEqual("value");
   });
 
-  it("can add child of error", () => {
-    const childErr = new ThingExpectedError("Child error", receivedValue);
+  it("can add cause of error", () => {
+    const causeErr = new ThingExpectedError("cause error", receivedValue);
     const err = new ThingExpectedError(
       "Testing error",
       receivedValue,
-      childErr
+      causeErr
     );
-    expect(err.child).toStrictEqual(childErr);
+    expect(err.cause).toStrictEqual(causeErr);
   });
 
   it("correct error message", () => {
@@ -106,7 +106,7 @@ describe("FetchError", () => {
     expect(err.url).toStrictEqual("https://inrupt.com/fetch-error");
   });
 
-  it("can add cause of error", () => {
+  it("can add description of error", () => {
     const err = new FetchError(
       "Testing error",
       urlReturned,
@@ -115,12 +115,12 @@ describe("FetchError", () => {
       fetchDescription,
       response
     );
-    expect(err.cause).toStrictEqual("Testing error");
+    expect(err.description).toStrictEqual("Testing error");
   });
 
-  it("can add child of error", () => {
-    const childErr = new FetchError(
-      "Child error",
+  it("can add cause of error", () => {
+    const causeErr = new FetchError(
+      "cause error",
       urlReturned,
       statusCode,
       statusText,
@@ -134,9 +134,9 @@ describe("FetchError", () => {
       statusText,
       fetchDescription,
       response,
-      childErr
+      causeErr
     );
-    expect(err.child).toStrictEqual(childErr);
+    expect(err.cause).toStrictEqual(causeErr);
   });
 
   it("can add urlReturned of error", () => {
@@ -220,15 +220,15 @@ describe("NotImplementedError", () => {
     expect(err.url).toStrictEqual("https://inrupt.com/not-implemented-error");
   });
 
-  it("can add cause of error", () => {
+  it("can add description of error", () => {
     const err = new NotImplementedError("Testing error");
-    expect(err.cause).toStrictEqual("Testing error");
+    expect(err.description).toStrictEqual("Testing error");
   });
 
-  it("can add child of error", () => {
-    const childErr = new NotImplementedError("Child error");
-    const err = new NotImplementedError("Testing error", childErr);
-    expect(err.child).toStrictEqual(childErr);
+  it("can add cause of error", () => {
+    const causeErr = new NotImplementedError("cause error");
+    const err = new NotImplementedError("Testing error", causeErr);
+    expect(err.cause).toStrictEqual(causeErr);
   });
 
   it("correct error message", () => {
@@ -251,25 +251,25 @@ describe("ValidPropertyUrlExpectedError", () => {
     );
   });
 
-  it("can add cause of error", () => {
+  it("can add description of error", () => {
     const err = new ValidPropertyUrlExpectedError(
       "Testing error",
       receivedValue
     );
-    expect(err.cause).toStrictEqual("Testing error");
+    expect(err.description).toStrictEqual("Testing error");
   });
 
-  it("can add child of error", () => {
-    const childErr = new ValidPropertyUrlExpectedError(
-      "Child error",
+  it("can add cause of error", () => {
+    const causeErr = new ValidPropertyUrlExpectedError(
+      "cause error",
       receivedValue
     );
     const err = new ValidPropertyUrlExpectedError(
       "Testing error",
       receivedValue,
-      childErr
+      causeErr
     );
-    expect(err.child).toStrictEqual(childErr);
+    expect(err.cause).toStrictEqual(causeErr);
   });
 
   it("correct error message", () => {
