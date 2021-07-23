@@ -45,16 +45,14 @@ export function isNamedNode<T>(value: T | NamedNode): value is NamedNode {
 export class SolidError extends Error {
   description: string;
 
-  url: string;
+  url = "https://inrupt.com/generic-error";
 
   cause?: Error;
 
   constructor(description: string, cause?: Error) {
     super();
-    const url = "https://inrupt.com/generic-error";
     this.description = description;
-    this.url = url;
-    this.message = `${description} : read more at ${url}.`;
+    this.message = `${description} : read more at ${this.url}.`;
 
     if (cause) {
       this.cause = cause;
@@ -66,32 +64,25 @@ export class SolidError extends Error {
 export class ThingExpectedError extends SolidError {
   description: string;
 
-  url: string;
+  url = "https://inrupt.com/thing-expected-error";
 
   cause?: Error;
 
   receivedValue: unknown;
 
   constructor(description: string, receivedValue: any, cause?: Error) {
-    const url = "https://inrupt.com/thing-expected-error";
-    super(description);
-    this.url = url;
-    this.description = description;
+    super(description, cause);
     this.receivedValue = receivedValue;
-    this.message = `${description} : read more at ${url}.`;
+    this.description = description;
+    this.message = `${description} : read more at ${this.url}.`;
     this.message += ` Expected a Thing, but received: ${receivedValue}.`;
-
-    if (cause) {
-      this.cause = cause;
-      this.message += ` Preceding error : ${cause.message}`;
-    }
   }
 }
 
 export class FetchError extends SolidError {
   description: string;
 
-  url: string;
+  url = "https://inrupt.com/fetch-error";
 
   cause?: Error;
 
@@ -114,71 +105,49 @@ export class FetchError extends SolidError {
     response: string,
     cause?: Error
   ) {
-    const url = "https://inrupt.com/fetch-error";
-    super(statusText);
+    super(description, cause);
     this.response = response;
-    this.url = url;
     this.urlReturned = urlReturned;
     this.statusCode = statusCode;
     this.statusText = statusText;
     this.fetchDescription = fetchDescription;
     this.description = description;
-    this.message = `${description} : read more at ${url}.`;
+    this.message = `${description} : read more at ${this.url}.`;
     this.message += ` Unable to fetch ${fetchDescription}: ${urlReturned} returned [${statusCode}] ${statusText}`;
-
-    if (cause) {
-      this.cause = cause;
-      this.message += ` Preceding error : ${cause.message}`;
-    }
   }
 }
 
-export class NotImplementedError extends Error {
+export class NotImplementedError extends SolidError {
   description: string;
 
-  url: string;
+  url = "https://inrupt.com/not-implemented-error";
 
   cause?: Error;
 
   constructor(description: string, cause?: Error) {
-    const url = "https://inrupt.com/not-implemented-error";
-    super();
-    this.message = `${description} : read more at ${url}.`;
+    super(description, cause);
     this.description = description;
-    this.url = url;
-
-    if (cause) {
-      this.cause = cause;
-      this.message += ` Preceding error : ${cause.message}`;
-    }
+    this.message = `${description} : read more at ${this.url}.`;
   }
 }
 
 export class ValidPropertyUrlExpectedError extends SolidError {
   description: string;
 
-  url: string;
+  url = "https://inrupt.com/valid-property-url-expected-error";
 
   cause?: Error;
 
   receivedValue: unknown;
 
   constructor(description: string, receivedValue: any, cause?: Error) {
-    const url = "https://inrupt.com/valid-property-url-expected-error";
+    super(description, cause);
     const value = isNamedNode(receivedValue)
       ? receivedValue.value
       : receivedValue;
-
-    super(description);
-    this.message = `${description} : read more at ${url}.`;
+    this.message = `${description} : read more at ${this.url}.`;
     this.message += ` Expected a valid URL to identify a property, but received: [${value}].`;
-    this.url = url;
     this.description = description;
     this.receivedValue = value;
-
-    if (cause) {
-      this.cause = cause;
-      this.message += ` Preceding error : ${cause.message}`;
-    }
   }
 }
