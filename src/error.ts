@@ -52,8 +52,8 @@ export class SolidError extends Error {
   constructor(description?: string, cause?: Error | SolidError) {
     super();
 
-    if (description){
-      this.description = description
+    if (description) {
+      this.description = description;
       this.message = `${description} : read more at ${this.url}.`;
     } else {
       this.message = `Read more at ${this.url}.`;
@@ -75,10 +75,17 @@ export class ThingExpectedError extends SolidError {
 
   receivedValue: unknown;
 
-  constructor( receivedValue: any, description?: string, cause?: Error | SolidError) {
+  constructor(
+    receivedValue: any,
+    description?: string,
+    cause?: Error | SolidError
+  ) {
     super(description, cause);
     this.receivedValue = receivedValue;
-    this.message = this.message.replace("generic-error","thing-expected-error");
+    this.message = this.message.replace(
+      "generic-error",
+      "thing-expected-error"
+    );
     this.message += ` Expected a Thing, but received: ${receivedValue}.`;
   }
 }
@@ -115,7 +122,7 @@ export class FetchError extends SolidError {
     this.statusCode = statusCode;
     this.statusText = statusText;
     this.fetchDescription = fetchDescription;
-    this.message = this.message.replace("generic-error","fetch-error");
+    this.message = this.message.replace("generic-error", "fetch-error");
     this.message += ` Unable to fetch ${fetchDescription}: ${urlReturned} returned [${statusCode}] ${statusText}`;
   }
 }
@@ -129,7 +136,10 @@ export class NotImplementedError extends SolidError {
 
   constructor(description?: string, cause?: Error | SolidError) {
     super(description, cause);
-    this.message = this.message.replace("generic-error","not-implemented-error");
+    this.message = this.message.replace(
+      "generic-error",
+      "not-implemented-error"
+    );
   }
 }
 
@@ -142,12 +152,15 @@ export class ValidPropertyUrlExpectedError extends SolidError {
 
   receivedValue: unknown;
 
-  constructor( receivedValue: any, description?: string, cause?: Error ) {
+  constructor(receivedValue: any, description?: string, cause?: Error) {
     super(description, cause);
     const value = isNamedNode(receivedValue)
       ? receivedValue.value
       : receivedValue;
-    this.message = this.message.replace("generic-error","not-implemented-error");
+    this.message = this.message.replace(
+      "generic-error",
+      "valid-property-url-expected-error"
+    );
     this.message += ` Expected a valid URL to identify a property, but received: [${value}].`;
     this.receivedValue = value;
   }

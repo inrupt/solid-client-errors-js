@@ -62,22 +62,22 @@ describe("SolidError", () => {
 describe("ThingExpectedError", () => {
   const receivedValue = "value";
   it("can get url of error", () => {
-    const err = new ThingExpectedError("Testing error", receivedValue);
+    const err = new ThingExpectedError(receivedValue, "Testing error");
     expect(err.url).toStrictEqual("https://inrupt.com/thing-expected-error");
   });
 
   it("can add description of error", () => {
-    const err = new ThingExpectedError("Testing error", receivedValue);
+    const err = new ThingExpectedError(receivedValue, "Testing error");
     expect(err.description).toStrictEqual("Testing error");
   });
 
   it("can add received value", () => {
-    const err = new ThingExpectedError("Testing error", receivedValue);
+    const err = new ThingExpectedError(receivedValue, "Testing error");
     expect(err.receivedValue).toStrictEqual("value");
   });
 
   it("can add cause of error", () => {
-    const causeErr = new ThingExpectedError("cause error", receivedValue);
+    const causeErr = new ThingExpectedError(receivedValue, "cause error");
     const err = new ThingExpectedError(
       "Testing error",
       receivedValue,
@@ -87,7 +87,7 @@ describe("ThingExpectedError", () => {
   });
 
   it("correct error message", () => {
-    const err = new ThingExpectedError("Testing error", receivedValue);
+    const err = new ThingExpectedError(receivedValue, "Testing error");
     expect(err.message).toStrictEqual(
       "Testing error : read more at https://inrupt.com/thing-expected-error. Expected a Thing, but received: value."
     );
@@ -103,44 +103,44 @@ describe("FetchError", () => {
 
   it("can get url of error", () => {
     const err = new FetchError(
-      "Testing error",
       urlReturned,
       statusCode,
       statusText,
       fetchDescription,
-      response
+      response,
+      "Testing error"
     );
     expect(err.url).toStrictEqual("https://inrupt.com/fetch-error");
   });
 
   it("can add description of error", () => {
     const err = new FetchError(
-      "Testing error",
       urlReturned,
       statusCode,
       statusText,
       fetchDescription,
-      response
+      response,
+      "Testing error"
     );
     expect(err.description).toStrictEqual("Testing error");
   });
 
   it("can add cause of error", () => {
     const causeErr = new FetchError(
-      "cause error",
-      urlReturned,
-      statusCode,
-      statusText,
-      fetchDescription,
-      response
-    );
-    const err = new FetchError(
-      "Testing error",
       urlReturned,
       statusCode,
       statusText,
       fetchDescription,
       response,
+      "cause error"
+    );
+    const err = new FetchError(
+      urlReturned,
+      statusCode,
+      statusText,
+      fetchDescription,
+      response,
+      "Testing error",
       causeErr
     );
     expect(err.cause).toStrictEqual(causeErr);
@@ -148,72 +148,72 @@ describe("FetchError", () => {
 
   it("can add urlReturned of error", () => {
     const err = new FetchError(
-      "Testing error",
       urlReturned,
       statusCode,
       statusText,
       fetchDescription,
-      response
+      response,
+      "Testing error"
     );
     expect(err.urlReturned).toStrictEqual("url");
   });
 
   it("can add statusCode of error", () => {
     const err = new FetchError(
-      "Testing error",
       urlReturned,
       statusCode,
       statusText,
       fetchDescription,
-      response
+      response,
+      "Testing error"
     );
     expect(err.statusCode).toStrictEqual("123456");
   });
 
   it("can add statusText of error", () => {
     const err = new FetchError(
-      "Testing error",
       urlReturned,
       statusCode,
       statusText,
       fetchDescription,
-      response
+      response,
+      "Testing error"
     );
     expect(err.statusText).toStrictEqual("status");
   });
 
   it("can add fetchDescription of error", () => {
     const err = new FetchError(
-      "Testing error",
       urlReturned,
       statusCode,
       statusText,
       fetchDescription,
-      response
+      response,
+      "Testing error"
     );
     expect(err.fetchDescription).toStrictEqual("fetch_description");
   });
 
   it("can add response of error", () => {
     const err = new FetchError(
-      "Testing error",
       urlReturned,
       statusCode,
       statusText,
       fetchDescription,
-      response
+      response,
+      "Testing error"
     );
     expect(err.response).toStrictEqual("response");
   });
 
   it("correct error message", () => {
     const err = new FetchError(
-      "Testing error",
       urlReturned,
       statusCode,
       statusText,
       fetchDescription,
-      response
+      response,
+      "Testing error"
     );
     expect(err.message).toStrictEqual(
       "Testing error : read more at https://inrupt.com/fetch-error. Unable to fetch fetch_description: url returned [123456] status"
@@ -250,8 +250,8 @@ describe("ValidPropertyUrlExpectedError", () => {
   const receivedValue = "value";
   it("can get url of error", () => {
     const err = new ValidPropertyUrlExpectedError(
-      "Testing error",
-      receivedValue
+      receivedValue,
+      "Testing error"
     );
     expect(err.url).toStrictEqual(
       "https://inrupt.com/valid-property-url-expected-error"
@@ -260,20 +260,20 @@ describe("ValidPropertyUrlExpectedError", () => {
 
   it("can add description of error", () => {
     const err = new ValidPropertyUrlExpectedError(
-      "Testing error",
-      receivedValue
+      receivedValue,
+      "Testing error"
     );
     expect(err.description).toStrictEqual("Testing error");
   });
 
   it("can add cause of error", () => {
     const causeErr = new ValidPropertyUrlExpectedError(
-      "cause error",
-      receivedValue
+      receivedValue,
+      "cause error"
     );
     const err = new ValidPropertyUrlExpectedError(
-      "Testing error",
       receivedValue,
+      "Testing error",
       causeErr
     );
     expect(err.cause).toStrictEqual(causeErr);
@@ -281,8 +281,8 @@ describe("ValidPropertyUrlExpectedError", () => {
 
   it("correct error message", () => {
     const err = new ValidPropertyUrlExpectedError(
-      "Testing error",
-      receivedValue
+      receivedValue,
+      "Testing error"
     );
     expect(err.message).toStrictEqual(
       "Testing error : read more at https://inrupt.com/valid-property-url-expected-error. Expected a valid URL to identify a property, but received: [value]."
@@ -293,7 +293,7 @@ describe("ValidPropertyUrlExpectedError", () => {
     const namedNode = DataFactory.namedNode(
       "https://arbitrary.pod/resource#node"
     );
-    const err = new ValidPropertyUrlExpectedError("Testing error", namedNode);
+    const err = new ValidPropertyUrlExpectedError(namedNode, "Testing error");
     expect(err.message).toStrictEqual(
       "Testing error : read more at https://inrupt.com/valid-property-url-expected-error. Expected a valid URL to identify a property, but received: [https://arbitrary.pod/resource#node]."
     );
