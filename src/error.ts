@@ -43,16 +43,21 @@ export function isNamedNode<T>(value: T | NamedNode): value is NamedNode {
 }
 
 export class SolidError extends Error {
-  description: string;
+  description?: string;
 
   url = "https://inrupt.com/generic-error";
 
-  cause?: Error;
+  cause?: Error | SolidError;
 
-  constructor(description: string, cause?: Error) {
+  constructor(description?: string, cause?: Error | SolidError) {
     super();
-    this.description = description;
-    this.message = `${description} : read more at ${this.url}.`;
+
+    if (description){
+      this.description = description
+      this.message = `${description} : read more at ${this.url}.`;
+    } else {
+      this.message = `Read more at ${this.url}.`;
+    }
 
     if (cause) {
       this.cause = cause;
@@ -62,29 +67,28 @@ export class SolidError extends Error {
 }
 
 export class ThingExpectedError extends SolidError {
-  description: string;
+  description?: string;
 
   url = "https://inrupt.com/thing-expected-error";
 
-  cause?: Error;
+  cause?: Error | SolidError;
 
   receivedValue: unknown;
 
-  constructor(description: string, receivedValue: any, cause?: Error) {
+  constructor( receivedValue: any, description?: string, cause?: Error | SolidError) {
     super(description, cause);
     this.receivedValue = receivedValue;
-    this.description = description;
-    this.message = `${description} : read more at ${this.url}.`;
+    this.message = this.message.replace("generic-error","thing-expected-error");
     this.message += ` Expected a Thing, but received: ${receivedValue}.`;
   }
 }
 
 export class FetchError extends SolidError {
-  description: string;
+  description?: string;
 
   url = "https://inrupt.com/fetch-error";
 
-  cause?: Error;
+  cause?: Error | SolidError;
 
   urlReturned: string;
 
@@ -97,13 +101,13 @@ export class FetchError extends SolidError {
   response: string;
 
   constructor(
-    description: string,
     urlReturned: string,
     statusCode: string,
     statusText: string,
     fetchDescription: string,
     response: string,
-    cause?: Error
+    description?: string,
+    cause?: Error | SolidError
   ) {
     super(description, cause);
     this.response = response;
@@ -111,43 +115,40 @@ export class FetchError extends SolidError {
     this.statusCode = statusCode;
     this.statusText = statusText;
     this.fetchDescription = fetchDescription;
-    this.description = description;
-    this.message = `${description} : read more at ${this.url}.`;
+    this.message = this.message.replace("generic-error","fetch-error");
     this.message += ` Unable to fetch ${fetchDescription}: ${urlReturned} returned [${statusCode}] ${statusText}`;
   }
 }
 
 export class NotImplementedError extends SolidError {
-  description: string;
+  description?: string;
 
   url = "https://inrupt.com/not-implemented-error";
 
-  cause?: Error;
+  cause?: Error | SolidError;
 
-  constructor(description: string, cause?: Error) {
+  constructor(description?: string, cause?: Error | SolidError) {
     super(description, cause);
-    this.description = description;
-    this.message = `${description} : read more at ${this.url}.`;
+    this.message = this.message.replace("generic-error","not-implemented-error");
   }
 }
 
 export class ValidPropertyUrlExpectedError extends SolidError {
-  description: string;
+  description?: string;
 
   url = "https://inrupt.com/valid-property-url-expected-error";
 
-  cause?: Error;
+  cause?: Error | SolidError;
 
   receivedValue: unknown;
 
-  constructor(description: string, receivedValue: any, cause?: Error) {
+  constructor( receivedValue: any, description?: string, cause?: Error ) {
     super(description, cause);
     const value = isNamedNode(receivedValue)
       ? receivedValue.value
       : receivedValue;
-    this.message = `${description} : read more at ${this.url}.`;
+    this.message = this.message.replace("generic-error","not-implemented-error");
     this.message += ` Expected a valid URL to identify a property, but received: [${value}].`;
-    this.description = description;
     this.receivedValue = value;
   }
 }

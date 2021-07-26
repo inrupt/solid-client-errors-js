@@ -50,6 +50,13 @@ describe("SolidError", () => {
       "Testing error : read more at https://inrupt.com/generic-error."
     );
   });
+
+  it("no arguments", () => {
+    const err = new SolidError();
+    expect(err.message).toStrictEqual(
+      "Read more at https://inrupt.com/generic-error."
+    );
+  });
 });
 
 describe("ThingExpectedError", () => {
