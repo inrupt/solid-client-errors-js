@@ -16,6 +16,9 @@
 // HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+// rdfjs/types package throws linter errors
+// eslint-disable-next-line import/no-unresolved
 import { NamedNode, Term } from "@rdfjs/types";
 
 /**
@@ -76,16 +79,19 @@ export class ThingExpectedError extends SolidError {
   receivedValue: unknown;
 
   constructor(
+    // eslint-disable-next-line
     receivedValue: any,
     description?: string,
     cause?: Error | SolidError
   ) {
     super(description, cause);
     this.receivedValue = receivedValue;
+
     this.message = this.message.replace(
       "generic-error",
       "thing-expected-error"
     );
+
     this.message += ` Expected a Thing, but received: ${receivedValue}.`;
   }
 }
@@ -136,6 +142,7 @@ export class NotImplementedError extends SolidError {
 
   constructor(description?: string, cause?: Error | SolidError) {
     super(description, cause);
+
     this.message = this.message.replace(
       "generic-error",
       "not-implemented-error"
@@ -152,15 +159,19 @@ export class ValidPropertyUrlExpectedError extends SolidError {
 
   receivedValue: unknown;
 
+  // eslint-disable-next-line
   constructor(receivedValue: any, description?: string, cause?: Error) {
     super(description, cause);
+
     const value = isNamedNode(receivedValue)
       ? receivedValue.value
       : receivedValue;
+
     this.message = this.message.replace(
       "generic-error",
       "valid-property-url-expected-error"
     );
+
     this.message += ` Expected a valid URL to identify a property, but received: [${value}].`;
     this.receivedValue = value;
   }
