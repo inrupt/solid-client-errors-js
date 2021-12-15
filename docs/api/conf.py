@@ -26,7 +26,7 @@ copyright = u'{0} Inrupt Inc.'.format(datetime.date.today().year)
 # -- product name -----
 # -- Separately update code samples and toc links and docs-navbar since not using substitutions--
 
-name = 'solid-client-notifications API'
+name = 'solid-client-errors API'
 repo_name = '{0}-js'.format(name)
 
 pygments_style = 'sphinx'
@@ -52,7 +52,7 @@ extensions = [
 
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['./_templates']
+templates_path = ['./docs-assets/_templates']
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -67,16 +67,17 @@ exclude_patterns = [ ]
 #html_theme = 'alabaster'
 
 html_theme = 'inrupt'
-html_theme_path = ['./themes']
+html_theme_path = ['./docs-assets/themes']
 
 html_copy_source = False
 
 html_title = 'Inrupt {0} Documentation'.format(name)
 
 # These theme options are declared in ./themes/inrupt/theme.conf
+# as well as some for pydata_sphinx_theme
 
 html_theme_options = {
-    'project_title': 'Inrupt {0} API Documentation'.format(name),
+    'project_title': 'Inrupt {0}'.format(name),
     'banner': False,
     'banner_msg': '',
     'robots_index': True,
@@ -84,19 +85,49 @@ html_theme_options = {
     'github_org': 'inrupt',
     'github_repo': repo_name,
     'github_branch': 'main',
-    'ess_docs': 'https://docs.inrupt.com/ess/',
-    'clientlibjs_docs': 'https://docs.inrupt.com/developer-tools/javascript/client-libraries/',
-    'reactsdk_docs': 'https://docs.inrupt.com/developer-tools/javascript/react-sdk',
+    'docs_project': 'developer-tools/api/javascript/solid-client-errors',
+    'show_api_menu': True,
+    
+    # below are pydata_sphinx_theme
+    "footer_items": [ "copyright.html"],
+    "navbar_align": "left",
+    "icon_links": [
+        {
+            "name": "Support Desk",
+            "url": "https://inrupt.atlassian.net/servicedesk",
+            "icon": "fas fa-tools",
+        },
+        {
+            "name": "Solid forum",
+            "url": "https://forum.solidproject.org/",
+            "icon": "fas fa-users",
+        },
+        {
+            "name": "Inrupt Blog",
+            "url": "https://inrupt.com/blog",
+            "icon": "fas fa-blog",
+        },
+    ],
+    "favicons": [
+        {
+         "rel": "icon",
+         "sizes": "16x16",
+         "href": "https://docs.inrupt.com/inrupt_stickers_v2-03.png",
+        },
+    ],
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ['./docs-assets/_static']
 
 html_sidebars = {
-    '**': ['docs-sidebar.html'],
+    '**': [ 'search-field.html',  'docs-sidebar.html'],
 }
 
 locale_dirs = ['locale/']   # path is example but recommended.
 gettext_compact = False     # optional.
+
+myst_heading_anchors = 6
+myst_url_schemes = [ 'https' ]
