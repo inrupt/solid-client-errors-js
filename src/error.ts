@@ -17,8 +17,6 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-// rdfjs/types package throws linter errors
-// eslint-disable-next-line import/no-unresolved
 import { NamedNode, Term } from "@rdfjs/types";
 
 /**

@@ -10,6 +10,5 @@ solid-client API
    :titlesonly:
 
    /modules/**
-   /interfaces/**
    /classes/**
 
