@@ -30,35 +30,35 @@ Errors currently supported:
 For each error type, here are the parameters:
 
     SolidError(
-	    description:  string,
-	    cause?:  Error
-	  )
+      description:  string,
+      cause?:  Error
+    )
 
     ThingExpectedError(
-	    description:  string,
-	    receivedValue:  any,
-	    cause?:  Error
+      description:  string,
+      receivedValue:  any,
+      cause?:  Error
     )
 
     FetchError( 
-	    description:  string,
-	    urlReturned:  string,
-	    statusCode:  string,
-	    statusText:  string,
-	    fetchDescription:  string,
-	    response:  string,
-	    cause?:  Error
+      description:  string,
+      urlReturned:  string,
+      statusCode:  string,
+      statusText:  string,
+      fetchDescription:  string,
+      response:  string,
+      cause?:  Error
     )
 
     NotImplementedError(
-	    description:  string,
-	    cause?:  Error
-	  )
+      description:  string,
+      cause?:  Error
+    )
     
     ValidPropertyUrlExpectedError(
-	    description:  string,
-	    receivedValue:  any,
-	    cause?:  Error
+      description:  string,
+      receivedValue:  any,
+      cause?:  Error
     )
 
 Errors in this library can be thrown in the same way as any error, for example:
@@ -68,10 +68,10 @@ Errors in this library can be thrown in the same way as any error, for example:
     ...
     
     try{
-		loadResource();
-	} catch(e){
-		throw new SolidError("Unable to load resource", e);
-	}
+      loadResource();
+    } catch(e){
+      throw new SolidError("Unable to load resource", e);
+    }
 
 ## License
 
