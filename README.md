@@ -1,6 +1,6 @@
+# solid-client-errors API
 
-# solid-client-errors-js API
-*A library providing meaningful and intuitive error handling.*
+_A library providing meaningful and intuitive error handling._
 
 ## Goals
 
@@ -14,16 +14,16 @@ The implementation will be broken down into two steps, the generic `SolidError` 
 
 `SolidError` extends the Error class in order to maintain the `Error` class's base functionality, namely the methods and properties. `SolidError` can be used for a general error if support has not yet been added for the specific error you require.
 
-### Specific errors extending SolidError  
+### Specific errors extending SolidError
 
 Specific errors extend the `SolidError` error class. This gives them a baseline structure but also makes errors of type `SolidError`, allowing them to be differentiated from internal library based errors.
 
 Errors currently supported:
 
- - `ThingExpectedError`
- - `FetchError`
- - `NotImplementedError`
- - `ValidPropertyURlExpectedError`
+- `ThingExpectedError`
+- `FetchError`
+- `NotImplementedError`
+- `ValidPropertyURlExpectedError`
 
 ## Usage
 
@@ -40,7 +40,7 @@ For each error type, here are the parameters:
       cause?:  Error
     )
 
-    FetchError( 
+    FetchError(
       description:  string,
       urlReturned:  string,
       statusCode:  string,
@@ -54,7 +54,7 @@ For each error type, here are the parameters:
       description:  string,
       cause?:  Error
     )
-    
+
     ValidPropertyUrlExpectedError(
       description:  string,
       receivedValue:  any,
@@ -63,10 +63,10 @@ For each error type, here are the parameters:
 
 Errors in this library can be thrown in the same way as any error, for example:
 
-    import SolidError from "solid-client-errors-js";
-    
+    import SolidError from "@inrupt/solid-client-errors";
+
     ...
-    
+
     try{
       loadResource();
     } catch(e){
@@ -76,4 +76,3 @@ Errors in this library can be thrown in the same way as any error, for example:
 ## License
 
 MIT © [Inrupt](https://inrupt.com)
-    

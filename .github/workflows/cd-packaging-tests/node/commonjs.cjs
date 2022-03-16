@@ -1,3 +1,3 @@
-const { sampleModuleFn } = require("@inrupt/solid-client-errors-js");
+const { sampleModuleFn } = require("@inrupt/solid-client-errors");
 
 console.log(sampleModuleFn());

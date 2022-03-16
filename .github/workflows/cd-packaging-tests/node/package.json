@@ -2,6 +2,6 @@
   "name": "cd-packaging-test-node",
   "private": true,
   "dependencies": {
-    "@inrupt/solid-client-errors-js": "0.0.2"
+    "@inrupt/solid-client-errors": "0.0.2"
   }
 }

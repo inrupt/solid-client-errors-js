@@ -1,3 +1,3 @@
-import { sampleModuleFn } from "@inrupt/solid-client-errors-js";
+import { sampleModuleFn } from "@inrupt/solid-client-errors";
 
 console.log(sampleModuleFn());
