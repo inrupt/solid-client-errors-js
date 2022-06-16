@@ -24,6 +24,7 @@ module.exports = {
   testEnvironment: "jsdom",
   clearMocks: true,
   collectCoverage: true,
+  coverageReporters: ["text", "lcov"],
   coverageThreshold: {
     global: {
       branches: 100,
