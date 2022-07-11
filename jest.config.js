@@ -24,6 +24,7 @@ module.exports = {
   testEnvironment: "jsdom",
   clearMocks: true,
   collectCoverage: true,
+  coverageReporters: process.env.CI ? ["text", "lcov"] : ["text"],
   coverageThreshold: {
     global: {
       branches: 100,
