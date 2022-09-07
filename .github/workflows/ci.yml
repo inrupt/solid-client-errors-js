@@ -8,7 +8,7 @@ jobs:
   audit-and-lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3.0.2
       - uses: actions/setup-node@v3
         with:
           node-version: "16.x"
@@ -24,7 +24,7 @@ jobs:
       matrix:
         node-version: [16.x, 14.x, 12.x]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3.0.2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
