@@ -51,7 +51,7 @@
     "@inrupt/eslint-config-lib": "^0.2.0-alpha.1",
     "@rdfjs/types": "^1.0.1",
     "@skypack/package-check": "^0.2.2",
-    "@testing-library/testcafe": "^4.2.3",
+    "@testing-library/testcafe": "^5.0.1",
     "@types/dotenv-flow": "^3.1.0",
     "@types/jest": "^26.0.21",
     "@types/n3": "^1.10.2",
