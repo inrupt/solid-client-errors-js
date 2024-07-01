@@ -1,5 +1,5 @@
 {
-  "name": "@inrupt/solid-client-error-js",
+  "name": "@inrupt/solid-client-errors-js",
   "description": "An RFC9457 Problem Details handling library.",
   "version": "0.0.1",
   "private": true,
@@ -24,8 +24,8 @@
     "test:e2e:browser": "playwright test",
     "test:e2e:browser:build": "cd e2e/browser/test-app && npm ci"
   },
-  "homepage": "https://docs.inrupt.com/client-libraries/solid-client-error-js/",
-  "bugs": "https://github.com/inrupt/solid-client-error-js/issues",
+  "homepage": "https://docs.inrupt.com/client-libraries/solid-client-errors-js/",
+  "bugs": "https://github.com/inrupt/solid-client-errors-js/issues",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
@@ -42,7 +42,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/inrupt/solid-client-error-js.git"
+    "url": "https://github.com/inrupt/solid-client-errors-js.git"
   },
   "devDependencies": {
     "@inrupt/base-rollup-config": "^3.0.1",
