@@ -18,27 +18,12 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-module.exports = {
-  extends: ["@inrupt/eslint-config-lib"],
-  parserOptions: {
-    project: "./tsconfig.eslint.json",
-  },
-  overrides: [
-    {
-      rules: {
-        // Conflicts with TS imports
-        "import/no-unresolved": "off",
-        "no-shadow": [
-          "error",
-          {
-            // status is a (deprecated) global variable, but it also is the
-            // conventional name for a Response attribute.
-            allow: ["status"],
-          },
-        ],
-      },
-      files: "*",
-    },
-  ],
-  ignorePatterns: ["dist/", "docs/"],
-};
+
+/**
+ * Superclass of all errors thrown by Inrupt's client libraries.
+ *
+ * @since unreleased
+ */
+export class InruptClientError extends Error {}
+
+export default InruptClientError;

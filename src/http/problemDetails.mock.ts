@@ -18,27 +18,32 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-module.exports = {
-  extends: ["@inrupt/eslint-config-lib"],
-  parserOptions: {
-    project: "./tsconfig.eslint.json",
-  },
-  overrides: [
-    {
-      rules: {
-        // Conflicts with TS imports
-        "import/no-unresolved": "off",
-        "no-shadow": [
-          "error",
-          {
-            // status is a (deprecated) global variable, but it also is the
-            // conventional name for a Response attribute.
-            allow: ["status"],
-          },
-        ],
-      },
-      files: "*",
+import type { WithProblemDetails } from "./problemDetails";
+import { DEFAULT_TYPE } from "./problemDetails";
+
+export function mockProblemDetails({
+  type,
+  status,
+  title,
+  detail,
+  instance,
+}: {
+  type?: URL | null;
+  status?: number | null;
+  title?: string | null;
+  detail?: string;
+  instance?: URL;
+}): WithProblemDetails {
+  return {
+    problemDetails: {
+      type: type === null ? undefined : type ?? DEFAULT_TYPE,
+      status: status === null ? undefined : status ?? 400,
+      title: title === null ? undefined : title ?? "Bad Request",
+      detail,
+      instance,
     },
-  ],
-  ignorePatterns: ["dist/", "docs/"],
-};
+    // The type assertion allows to null fields for unit tests.
+  } as WithProblemDetails;
+}
+
+export default mockProblemDetails;

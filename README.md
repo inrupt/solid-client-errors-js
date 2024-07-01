@@ -1,4 +1,4 @@
-# Solid JavaScript Error - solid-client-errors
+# Solid JavaScript Error - solid-client-error
 
 [![Contributor
 Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE-OF-CONDUCT.md)
@@ -8,7 +8,7 @@ conduct](CODE-OF-CONDUCT.md). By participating, you are expected to uphold this
 code. Please report unacceptable behavior to
 [engineering@inrupt.com](mailto:engineering@inrupt.com).
 
-`@inrupt/solid-client-errors` is a JavaScript library for handling [RFC9457 Problem Details](https://www.rfc-editor.org/rfc/rfc9457) on HTTP error responses.
+`@inrupt/solid-client-error` is a JavaScript library for handling [RFC9457 Problem Details](https://www.rfc-editor.org/rfc/rfc9457) on HTTP error responses.
 
 # Server support
 
@@ -43,7 +43,7 @@ releases](https://nodejs.org/en/about/releases/), and support 18.x and 20.x.
 For the latest stable version of solid-client-error:
 
 ```bash
-npm install @inrupt/solid-client-errors
+npm install @inrupt/solid-client-error
 ```
 
 # Issues & Help

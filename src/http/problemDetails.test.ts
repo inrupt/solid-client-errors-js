@@ -18,27 +18,17 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-module.exports = {
-  extends: ["@inrupt/eslint-config-lib"],
-  parserOptions: {
-    project: "./tsconfig.eslint.json",
-  },
-  overrides: [
-    {
-      rules: {
-        // Conflicts with TS imports
-        "import/no-unresolved": "off",
-        "no-shadow": [
-          "error",
-          {
-            // status is a (deprecated) global variable, but it also is the
-            // conventional name for a Response attribute.
-            allow: ["status"],
-          },
-        ],
-      },
-      files: "*",
-    },
-  ],
-  ignorePatterns: ["dist/", "docs/"],
-};
+import { describe, it, expect } from "@jest/globals";
+import { hasProblemDetails } from "./problemDetails";
+import { mockProblemDetails } from "./problemDetails.mock";
+
+describe("hasProblemDetails", () => {
+  it("validates a correct problem details", () => {
+    expect(hasProblemDetails(mockProblemDetails({}))).toBe(true);
+  });
+  it("does not validate a problem details missing required fields", () => {
+    expect(hasProblemDetails(mockProblemDetails({ type: null }))).toBe(false);
+    expect(hasProblemDetails(mockProblemDetails({ title: null }))).toBe(false);
+    expect(hasProblemDetails(mockProblemDetails({ status: null }))).toBe(false);
+  });
+});

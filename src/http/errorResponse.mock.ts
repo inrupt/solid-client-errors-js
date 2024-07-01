@@ -18,27 +18,36 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-module.exports = {
-  extends: ["@inrupt/eslint-config-lib"],
-  parserOptions: {
-    project: "./tsconfig.eslint.json",
-  },
-  overrides: [
-    {
-      rules: {
-        // Conflicts with TS imports
-        "import/no-unresolved": "off",
-        "no-shadow": [
-          "error",
-          {
-            // status is a (deprecated) global variable, but it also is the
-            // conventional name for a Response attribute.
-            allow: ["status"],
-          },
-        ],
-      },
-      files: "*",
+
+import type { WithErrorResponse } from "./errorResponse";
+
+export function mockErrorResponse({
+  ok,
+  body,
+  status,
+  statusText,
+  url,
+  headers,
+}: {
+  ok?: boolean | null;
+  body?: string | null;
+  status?: number | null;
+  statusText?: string | null;
+  url?: string | null;
+  headers?: Headers | null;
+}): WithErrorResponse {
+  return {
+    response: {
+      ok: ok === null ? undefined : ok ?? false,
+      body: body === null ? undefined : body ?? "Some response body",
+      status: status === null ? undefined : status ?? 400,
+      statusText: statusText === null ? undefined : statusText ?? "Bad Request",
+      url: url === null ? undefined : url ?? "https://example.org/resource",
+      headers: headers === null ? undefined : headers ?? new Headers(),
     },
-  ],
-  ignorePatterns: ["dist/", "docs/"],
-};
+    // The type assertion allows to create invalid error
+    // responses for unit tests purpose.
+  } as WithErrorResponse;
+}
+
+export default mockErrorResponse;

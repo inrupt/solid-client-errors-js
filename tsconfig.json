@@ -2,13 +2,13 @@
   "compilerOptions": {
     "target": "es2020",
     "module": "commonjs",
-    "lib": ["es6", "dom"],
+    "lib": ["es2022", "dom"],
     "declaration": true,
     "outDir": "dist",
     "rootDir": "src",
     "strict": true,
     // https://github.com/microsoft/TypeScript/wiki/Performance#controlling-types-inclusion:
-    "types": ["jest"],
+    "types": [],
     "esModuleInterop": true,
     // Prevent developers on different OSes from running into problems:
     "forceConsistentCasingInFileNames": true,
@@ -26,7 +26,11 @@
     "theme": "markdown",
     "readme": "none",
     "entryDocument": "index.rst",
-    "plugin": ["typedoc-plugin-markdown"]
+    "plugin": [
+      "typedoc-plugin-markdown",
+      "@typhonjs-typedoc/ts-lib-docs/typedoc/ts-links/dom/2023",
+      "@typhonjs-typedoc/ts-lib-docs/typedoc/ts-links/esm/2023"
+    ]
   },
   "include": ["src/**/*.ts"],
   "exclude": [

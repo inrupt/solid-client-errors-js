@@ -18,27 +18,26 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-module.exports = {
-  extends: ["@inrupt/eslint-config-lib"],
-  parserOptions: {
-    project: "./tsconfig.eslint.json",
-  },
-  overrides: [
-    {
-      rules: {
-        // Conflicts with TS imports
-        "import/no-unresolved": "off",
-        "no-shadow": [
-          "error",
-          {
-            // status is a (deprecated) global variable, but it also is the
-            // conventional name for a Response attribute.
-            allow: ["status"],
-          },
-        ],
-      },
-      files: "*",
-    },
-  ],
-  ignorePatterns: ["dist/", "docs/"],
-};
+import { describe, it, expect } from "@jest/globals";
+import { hasErrorResponse } from "./errorResponse";
+import { mockErrorResponse } from "./errorResponse.mock";
+
+describe("hasErrorResponse", () => {
+  it("returns true for correct error responses", () => {
+    expect(hasErrorResponse(mockErrorResponse({}))).toBe(true);
+  });
+
+  it("returns false for error response with missing fields", () => {
+    expect(hasErrorResponse(mockErrorResponse({ ok: true }))).toBe(false);
+    expect(hasErrorResponse(mockErrorResponse({ status: null }))).toBe(false);
+    expect(hasErrorResponse(mockErrorResponse({ statusText: null }))).toBe(
+      false,
+    );
+    expect(hasErrorResponse(mockErrorResponse({ body: null }))).toBe(false);
+    expect(hasErrorResponse(mockErrorResponse({ url: null }))).toBe(false);
+  });
+
+  it("returns false for an object not having an errorResponse entry", () => {
+    expect(hasErrorResponse(new Error())).toBe(false);
+  });
+});
