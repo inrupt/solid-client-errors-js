@@ -45,7 +45,7 @@ export function mockErrorResponse({
       url: url === null ? undefined : url ?? "https://example.org/resource",
       headers: headers === null ? undefined : headers ?? new Headers(),
     },
-    // The type assertion allows to create invalid error
+    // The type assertion allows us to create invalid error
     // responses for unit tests purpose.
   } as WithErrorResponse;
 }

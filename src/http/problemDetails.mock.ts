@@ -42,7 +42,7 @@ export function mockProblemDetails({
       detail,
       instance,
     },
-    // The type assertion allows to null fields for unit tests.
+    // The type assertion allows us to null fields for unit tests.
   } as WithProblemDetails;
 }
 

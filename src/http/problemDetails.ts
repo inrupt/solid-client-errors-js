@@ -59,7 +59,7 @@ export type ProblemDetails = Readonly<{
    */
   detail?: string;
   /**
-   * A unique URL identifying the problem occurence.
+   * A unique URL identifying the problem occurrence.
    */
   instance?: URL;
 }>;
