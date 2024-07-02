@@ -125,9 +125,9 @@ export function hasProblemDetails(
   return isProblemDetails((error as WithProblemDetails).problemDetails);
 }
 
-function asUrl(url: string): URL | undefined {
+function asUrl(url: string, base: string): URL | undefined {
   try {
-    return new URL(url);
+    return new URL(url, base);
   } catch {
     return undefined;
   }
@@ -153,7 +153,7 @@ export function buildProblemDetails(response: ErrorResponse): ProblemDetails {
   if (response.headers.get("Content-Type") === PROBLEM_DETAILS_MIME) {
     try {
       const responseBody = JSON.parse(response.body);
-      const responseType = asUrl(responseBody.type);
+      const responseType = asUrl(responseBody.type, response.url);
       if (responseType !== undefined) {
         type = responseType;
       }
@@ -166,7 +166,7 @@ export function buildProblemDetails(response: ErrorResponse): ProblemDetails {
       if (typeof responseBody.detail === "string") {
         detail = responseBody.detail;
       }
-      const responseInstance = asUrl(responseBody.instance);
+      const responseInstance = asUrl(responseBody.instance, response.url);
       if (responseInstance !== undefined) {
         instance = responseInstance;
       }

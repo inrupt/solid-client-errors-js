@@ -18,7 +18,7 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-import { describe, it, expect } from "@jest/globals";
+import { describe, it, expect, jest } from "@jest/globals";
 import { ClientHttpError } from "./httpError";
 import { mockProblemDetails } from "./problemDetails.mock";
 import {
@@ -188,5 +188,35 @@ describe("ClientHttpError", () => {
       // eslint-disable-next-line no-new
       new ClientHttpError(response, "Not important", "Some error message");
     }).toThrow(InruptClientError);
+  });
+
+  it("supports relative URLs for type and instance", () => {
+    const responseUrl = "https://example.org/resource";
+    const relativeTypeUrl = "../type";
+    const relativeInstanceUrl = "../instance";
+    const response = new Response(undefined, {
+      status: 400,
+      statusText: "Bad Request",
+      headers: new Headers({
+        "Content-Type": "application/problem+json",
+      }),
+    });
+    jest.spyOn(response, "url", "get").mockReturnValue(responseUrl);
+    const { problemDetails: mockedProblemDetails } = mockProblemDetails({});
+    const error = new ClientHttpError(
+      response,
+      JSON.stringify({
+        ...mockedProblemDetails,
+        type: relativeTypeUrl,
+        instance: relativeInstanceUrl,
+      }),
+      "Some error message",
+    );
+    expect(error.problemDetails.type.href).toStrictEqual(
+      new URL(relativeTypeUrl, responseUrl).href,
+    );
+    expect(error.problemDetails.instance?.href).toStrictEqual(
+      new URL(relativeInstanceUrl, responseUrl).href,
+    );
   });
 });
