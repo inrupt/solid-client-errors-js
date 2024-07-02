@@ -19,4 +19,18 @@
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-// Export public API from here
+export { InruptClientError } from "./clientError";
+export { ClientHttpError } from "./http/httpError";
+export {
+  DEFAULT_TYPE,
+  PROBLEM_DETAILS_MIME,
+  type ProblemDetails,
+  type WithProblemDetails,
+  hasProblemDetails,
+} from "./http/problemDetails";
+export {
+  type ResponseMetadata,
+  type ErrorResponse,
+  type WithErrorResponse,
+  hasErrorResponse,
+} from "./http/errorResponse";

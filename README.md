@@ -40,7 +40,7 @@ releases](https://nodejs.org/en/about/releases/), and support 18.x and 20.x.
 
 # Installation
 
-For the latest stable version of solid-client-error:
+For the latest stable version of solid-client-errors:
 
 ```bash
 npm install @inrupt/solid-client-errors

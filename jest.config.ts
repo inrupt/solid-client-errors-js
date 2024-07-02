@@ -24,7 +24,10 @@ import type { Config } from "jest";
 type ArrayElement<MyArray> = MyArray extends Array<infer T> ? T : never;
 
 const baseConfig: ArrayElement<NonNullable<Config["projects"]>> = {
+  coveragePathIgnorePatterns: [".*\\.mock\\.ts"],
   modulePathIgnorePatterns: ["dist/", "<rootDir>/examples/"],
+  // Setup required because of missing globals in JSDom
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   testRegex: "/src/.*\\.test\\.ts$",
   clearMocks: true,
   injectGlobals: false,

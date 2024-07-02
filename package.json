@@ -24,8 +24,8 @@
     "test:e2e:browser": "playwright test",
     "test:e2e:browser:build": "cd e2e/browser/test-app && npm ci"
   },
-  "homepage": "https://docs.inrupt.com/client-libraries/solid-client-error-js/",
-  "bugs": "https://github.com/inrupt/solid-client-error-js/issues",
+  "homepage": "https://docs.inrupt.com/client-libraries/solid-client-errors-js/",
+  "bugs": "https://github.com/inrupt/solid-client-errors-js/issues",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
@@ -42,13 +42,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/inrupt/solid-client-error-js.git"
+    "url": "https://github.com/inrupt/solid-client-errors-js.git"
   },
   "devDependencies": {
     "@inrupt/base-rollup-config": "^3.0.1",
     "@inrupt/eslint-config-lib": "^3.0.1",
     "@inrupt/internal-test-env": "^3.2.1",
+    "@inrupt/jest-jsdom-polyfills": "^3.2.1",
     "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typhonjs-typedoc/ts-lib-docs": "^2023.7.12",
     "eslint": "^8.57.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jest": "^28.6.0",
@@ -60,7 +62,7 @@
     "ts-jest": "^29.1.5",
     "ts-node": "^10.9.2",
     "typedoc": "^0.26.3",
-    "typedoc-plugin-markdown": "^4.1.1",
+    "typedoc-plugin-markdown": "^3.17.1",
     "typescript": "^5.5.2"
   },
   "engines": {
