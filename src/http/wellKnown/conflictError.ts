@@ -24,11 +24,9 @@ import { ClientHttpError } from "../httpError";
 
 export const CONFLICT_STATUS = 409 as const;
 
-export type ConflictErrorResponse = Readonly<
-  ErrorResponse & {
-    status: typeof CONFLICT_STATUS;
-  }
->;
+export type ConflictErrorResponse = ErrorResponse & {
+  status: typeof CONFLICT_STATUS;
+};
 
 /**
  * Runtime error thrown on HTTP Conflict (409) response.

@@ -24,11 +24,9 @@ import { ClientHttpError } from "../httpError";
 
 export const NOT_FOUND_STATUS = 404 as const;
 
-export type NotFoundErrorResponse = Readonly<
-  ErrorResponse & {
-    status: typeof NOT_FOUND_STATUS;
-  }
->;
+export type NotFoundErrorResponse = ErrorResponse & {
+  status: typeof NOT_FOUND_STATUS;
+};
 
 /**
  * Runtime error thrown on HTTP Not Found (404) response.

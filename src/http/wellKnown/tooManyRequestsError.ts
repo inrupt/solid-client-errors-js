@@ -24,11 +24,9 @@ import { ClientHttpError } from "../httpError";
 
 export const TOO_MANY_REQUESTS_STATUS = 429 as const;
 
-export type TooManyRequestsErrorResponse = Readonly<
-  ErrorResponse & {
-    status: typeof TOO_MANY_REQUESTS_STATUS;
-  }
->;
+export type TooManyRequestsErrorResponse = ErrorResponse & {
+  status: typeof TOO_MANY_REQUESTS_STATUS;
+};
 
 /**
  * Runtime error thrown on HTTP Too Many Requests (429) response.

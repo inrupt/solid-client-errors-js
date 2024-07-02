@@ -24,11 +24,9 @@ import { ClientHttpError } from "../httpError";
 
 export const NOT_ACCEPTABLE_STATUS = 406 as const;
 
-export type NotAcceptableErrorResponse = Readonly<
-  ErrorResponse & {
-    status: typeof NOT_ACCEPTABLE_STATUS;
-  }
->;
+export type NotAcceptableErrorResponse = ErrorResponse & {
+  status: typeof NOT_ACCEPTABLE_STATUS;
+};
 
 /**
  * Runtime error thrown on HTTP Not Acceptable (406) response.

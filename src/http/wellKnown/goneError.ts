@@ -24,11 +24,9 @@ import { ClientHttpError } from "../httpError";
 
 export const GONE_STATUS = 410 as const;
 
-export type GoneErrorResponse = Readonly<
-  ErrorResponse & {
-    status: typeof GONE_STATUS;
-  }
->;
+export type GoneErrorResponse = ErrorResponse & {
+  status: typeof GONE_STATUS;
+};
 
 /**
  * Runtime error thrown on HTTP Gone (410) response.

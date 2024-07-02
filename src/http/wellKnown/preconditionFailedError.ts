@@ -24,11 +24,9 @@ import { ClientHttpError } from "../httpError";
 
 export const PRECONDITION_FAILED_STATUS = 412 as const;
 
-export type PreconditionFailedErrorResponse = Readonly<
-  ErrorResponse & {
-    status: typeof PRECONDITION_FAILED_STATUS;
-  }
->;
+export type PreconditionFailedErrorResponse = ErrorResponse & {
+  status: typeof PRECONDITION_FAILED_STATUS;
+};
 
 /**
  * Runtime error thrown on HTTP Precondition Failed (412) response.

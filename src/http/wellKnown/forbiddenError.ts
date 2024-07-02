@@ -24,11 +24,9 @@ import { ClientHttpError } from "../httpError";
 
 export const FORBIDDEN_STATUS = 403 as const;
 
-export type ForbiddenErrorResponse = Readonly<
-  ErrorResponse & {
-    status: typeof FORBIDDEN_STATUS;
-  }
->;
+export type ForbiddenErrorResponse = ErrorResponse & {
+  status: typeof FORBIDDEN_STATUS;
+};
 
 /**
  * Runtime error thrown on HTTP Forbidden (403) response.

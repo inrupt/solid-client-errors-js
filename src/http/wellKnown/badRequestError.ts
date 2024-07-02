@@ -24,16 +24,15 @@ import { ClientHttpError } from "../httpError";
 
 export const BAD_REQUEST_STATUS = 400 as const;
 
-export type BadRequestErrorResponse = Readonly<
-  ErrorResponse & {
-    status: typeof BAD_REQUEST_STATUS;
-  }
->;
+export type BadRequestErrorResponse = ErrorResponse & {
+  status: typeof BAD_REQUEST_STATUS;
+};
 
 /**
  * Runtime error thrown on HTTP Bad Request (400) response.
  *
  * @see {@link https://www.rfc-editor.org/rfc/rfc9110#status.400 | RFC 9110 (15.5.1.) 400 Bad Request}
+ * @since unreleased
  */
 export class BadRequestError extends ClientHttpError {
   constructor(

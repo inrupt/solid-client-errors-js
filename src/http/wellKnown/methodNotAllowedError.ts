@@ -24,11 +24,9 @@ import { ClientHttpError } from "../httpError";
 
 export const METHOD_NOT_ALLOWED_STATUS = 405 as const;
 
-export type MethodNotAllowedErrorResponse = Readonly<
-  ErrorResponse & {
-    status: typeof METHOD_NOT_ALLOWED_STATUS;
-  }
->;
+export type MethodNotAllowedErrorResponse = ErrorResponse & {
+  status: typeof METHOD_NOT_ALLOWED_STATUS;
+};
 
 /**
  * Runtime error thrown on HTTP Method Not Allowed (405) response.

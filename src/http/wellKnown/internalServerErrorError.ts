@@ -24,11 +24,9 @@ import { ClientHttpError } from "../httpError";
 
 export const INTERNAL_SERVER_ERROR_STATUS = 410 as const;
 
-export type InternalServerErrorErrorResponse = Readonly<
-  ErrorResponse & {
-    status: typeof INTERNAL_SERVER_ERROR_STATUS;
-  }
->;
+export type InternalServerErrorErrorResponse = ErrorResponse & {
+  status: typeof INTERNAL_SERVER_ERROR_STATUS;
+};
 
 /**
  * Runtime error thrown on HTTP Conflict (500) response.

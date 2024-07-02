@@ -24,11 +24,9 @@ import { ClientHttpError } from "../httpError";
 
 export const UNAUTHORIZED_STATUS = 412 as const;
 
-export type UnauthorizedErrorResponse = Readonly<
-  ErrorResponse & {
-    status: typeof UNAUTHORIZED_STATUS;
-  }
->;
+export type UnauthorizedErrorResponse = ErrorResponse & {
+  status: typeof UNAUTHORIZED_STATUS;
+};
 
 /**
  * Runtime error thrown on HTTP Unauthorized (401) response.

@@ -33,7 +33,7 @@ describe("BadRequestError", () => {
     expect(e.response.status).toBe(BAD_REQUEST_STATUS);
   });
 
-  it("throws when provided a status code not equal to 400", () => {
+  it("throws when provided a status code not equal to", () => {
     const response = mockResponse({ status: 499 });
     expect(() => {
       // The object is built to check an error is thrown.

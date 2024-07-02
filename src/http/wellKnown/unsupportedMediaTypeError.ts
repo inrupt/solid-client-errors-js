@@ -24,11 +24,9 @@ import { ClientHttpError } from "../httpError";
 
 export const UNSUPPORTED_MEDIA_TYPE_STATUS = 415 as const;
 
-export type UnsupportedMediaTypeErrorResponse = Readonly<
-  ErrorResponse & {
-    status: typeof UNSUPPORTED_MEDIA_TYPE_STATUS;
-  }
->;
+export type UnsupportedMediaTypeErrorResponse = ErrorResponse & {
+  status: typeof UNSUPPORTED_MEDIA_TYPE_STATUS;
+};
 
 /**
  * Runtime error thrown on HTTP Unsupported Media Type (415) response.
