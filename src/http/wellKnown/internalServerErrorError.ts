@@ -34,6 +34,7 @@ export type InternalServerErrorErrorResponse = Readonly<
  * Runtime error thrown on HTTP Conflict (500) response.
  *
  * @see {@link https://www.rfc-editor.org/rfc/rfc9110#status.500 | RFC 9110 (15.6.1.) 500 Internal Server Error}
+ * @since unreleased
  */
 export class InternalServerErrorError extends ClientHttpError {
   constructor(

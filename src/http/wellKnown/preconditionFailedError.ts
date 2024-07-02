@@ -34,6 +34,7 @@ export type PreconditionFailedErrorResponse = Readonly<
  * Runtime error thrown on HTTP Precondition Failed (412) response.
  *
  * @see {@link https://www.rfc-editor.org/rfc/rfc9110#status.412 | RFC 9110 (15.5.13.) 412 Precondition Failed}
+ * @since unreleased
  */
 export class PreconditionFailedError extends ClientHttpError {
   constructor(

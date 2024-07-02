@@ -34,6 +34,7 @@ export type UnauthorizedErrorResponse = Readonly<
  * Runtime error thrown on HTTP Unauthorized (401) response.
  *
  * @see {@link https://www.rfc-editor.org/rfc/rfc9110#status.401 | RFC 9110 (15.5.2.) 401 Unauthorized}
+ * @since unreleased
  */
 export class UnauthorizedError extends ClientHttpError {
   constructor(

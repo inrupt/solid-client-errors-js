@@ -34,6 +34,7 @@ export type GoneErrorResponse = Readonly<
  * Runtime error thrown on HTTP Gone (410) response.
  *
  * @see {@link https://www.rfc-editor.org/rfc/rfc9110#status.410 | RFC 9110 (15.5.11.) 410 Gone}
+ * @since unreleased
  */
 export class GoneError extends ClientHttpError {
   constructor(

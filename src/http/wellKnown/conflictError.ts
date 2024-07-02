@@ -34,6 +34,7 @@ export type ConflictErrorResponse = Readonly<
  * Runtime error thrown on HTTP Conflict (409) response.
  *
  * @see {@link https://www.rfc-editor.org/rfc/rfc9110#status.409 | RFC 9110 (15.5.10.) 409 Conflict}
+ * @since unreleased
  */
 export class ConflictError extends ClientHttpError {
   constructor(

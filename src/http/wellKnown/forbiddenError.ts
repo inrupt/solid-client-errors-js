@@ -34,6 +34,7 @@ export type ForbiddenErrorResponse = Readonly<
  * Runtime error thrown on HTTP Forbidden (403) response.
  *
  * @see {@link https://www.rfc-editor.org/rfc/rfc9110#status.403 | RFC 9110 (15.5.4.) 403 Forbidden}
+ * @since unreleased
  */
 export class ForbiddenError extends ClientHttpError {
   constructor(

@@ -34,6 +34,7 @@ export type UnsupportedMediaTypeErrorResponse = Readonly<
  * Runtime error thrown on HTTP Unsupported Media Type (415) response.
  *
  * @see {@link https://www.rfc-editor.org/rfc/rfc9110#status.415 | RFC 9110 (15.5.16.) 415 Unsupported Media Type}
+ * @since unreleased
  */
 export class UnsupportedMediaTypeError extends ClientHttpError {
   constructor(
