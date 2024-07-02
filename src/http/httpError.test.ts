@@ -30,7 +30,7 @@ import InruptClientError from "../clientError";
 import { hasErrorResponse } from "./errorResponse";
 
 describe("ClientHttpError", () => {
-  it("creates an Error object with the appropriate response getter", () => {
+  it("creates an object with the appropriate response getter", () => {
     const response = new Response(undefined, {
       status: 400,
       statusText: "Bad Request",
@@ -44,6 +44,7 @@ describe("ClientHttpError", () => {
       JSON.stringify(problemDetails),
       "Some error message",
     );
+    expect(error instanceof InruptClientError).toBe(true);
     expect(hasErrorResponse(error)).toBe(true);
     expect(error.response.status).toStrictEqual(response.status);
     expect(error.response.statusText).toStrictEqual(response.statusText);
@@ -52,7 +53,7 @@ describe("ClientHttpError", () => {
     expect(error.response.body).toStrictEqual(JSON.stringify(problemDetails));
   });
 
-  it("creates an Error object with the appropriate problemDetails getter", () => {
+  it("creates an object with the appropriate problemDetails getter", () => {
     const response = new Response(undefined, {
       status: 400,
       statusText: "Bad Request",
@@ -69,6 +70,7 @@ describe("ClientHttpError", () => {
       JSON.stringify(mockedProblemDetails),
       "Some error message",
     );
+    expect(error instanceof InruptClientError).toBe(true);
     expect(hasProblemDetails(error)).toBe(true);
     expect(error.problemDetails.status).toStrictEqual(
       mockedProblemDetails.status,
@@ -133,7 +135,7 @@ describe("ClientHttpError", () => {
     }).toThrow();
   });
 
-  it("creates an Error object with defaults problemDetails when the response isn't conform to RFC9457", () => {
+  it("creates an object with problemDetails defaults when the response does not conform to RFC9457", () => {
     const response = new Response(undefined, {
       status: 400,
       statusText: "Bad Request",
@@ -154,7 +156,7 @@ describe("ClientHttpError", () => {
     expect(error.response.body).toBe("Some response body");
   });
 
-  it("creates an Error object with defaults problemDetails when the response is malformed", () => {
+  it("creates an Error object with problemDetails defaults when the response is malformed", () => {
     const response = new Response(undefined, {
       status: 400,
       statusText: "Bad Request",
@@ -184,12 +186,7 @@ describe("ClientHttpError", () => {
     expect(() => {
       // Constructing the object to throw.
       // eslint-disable-next-line no-new
-      new ClientHttpError(
-        response,
-        // The response body should be JSON, but it actually is a plain string.
-        "Not JSON",
-        "Some error message",
-      );
+      new ClientHttpError(response, "Not important", "Some error message");
     }).toThrow(InruptClientError);
   });
 });
