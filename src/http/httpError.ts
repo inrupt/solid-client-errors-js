@@ -60,7 +60,7 @@ export class ClientHttpError
     options?: ErrorOptions,
   ) {
     super(message, options);
-    if (responseMetadata.status >= 200 && responseMetadata.status < 300) {
+    if (responseMetadata.status >= 200 && responseMetadata.status < 400) {
       throw new InruptClientError(
         `A ClientHttpError cannot be built from a success response, got ${responseMetadata.status} ${responseMetadata.statusText}`,
       );
