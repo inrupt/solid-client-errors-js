@@ -29,15 +29,37 @@ import {
 import InruptClientError from "../clientError";
 import { hasErrorResponse } from "./errorResponse";
 
+const mockResponse = ({
+  body,
+  status,
+  statusText,
+  headers,
+  responseUrl,
+}: {
+  body?: string;
+  status?: number;
+  statusText?: string;
+  headers?: Headers;
+  responseUrl?: string;
+} = {}): Response => {
+  const response = new Response(body ?? undefined, {
+    status: status ?? 400,
+    statusText: statusText ?? "Bad Request",
+    headers:
+      headers ??
+      new Headers({
+        "Content-Type": PROBLEM_DETAILS_MIME,
+      }),
+  });
+  jest
+    .spyOn(response, "url", "get")
+    .mockReturnValue(responseUrl ?? "https://example.org/resource");
+  return response;
+};
+
 describe("ClientHttpError", () => {
   it("creates an object with the appropriate response getter", () => {
-    const response = new Response(undefined, {
-      status: 400,
-      statusText: "Bad Request",
-      headers: new Headers({
-        "Content-Type": "application/problem+json",
-      }),
-    });
+    const response = mockResponse();
     const { problemDetails } = mockProblemDetails({});
     const error = new ClientHttpError(
       response,
@@ -54,13 +76,7 @@ describe("ClientHttpError", () => {
   });
 
   it("creates an object with the appropriate problemDetails getter", () => {
-    const response = new Response(undefined, {
-      status: 400,
-      statusText: "Bad Request",
-      headers: new Headers({
-        "Content-Type": "application/problem+json",
-      }),
-    });
+    const response = mockResponse();
     const { problemDetails: mockedProblemDetails } = mockProblemDetails({
       detail: "Some details.",
       instance: new URL("https://example.org/instance"),
@@ -91,13 +107,7 @@ describe("ClientHttpError", () => {
   });
 
   it("supports optional problem details entries being absent", () => {
-    const response = new Response(undefined, {
-      status: 400,
-      statusText: "Bad Request",
-      headers: new Headers({
-        "Content-Type": "application/problem+json",
-      }),
-    });
+    const response = mockResponse();
     // Note that `instance` and `detail` entries are not mocked.
     const { problemDetails: mockedProblemDetails } = mockProblemDetails({});
     const error = new ClientHttpError(
@@ -111,13 +121,7 @@ describe("ClientHttpError", () => {
   });
 
   it("makes the problem details and error response immutable", () => {
-    const response = new Response(undefined, {
-      status: 400,
-      statusText: "Bad Request",
-      headers: new Headers({
-        "Content-Type": "application/problem+json",
-      }),
-    });
+    const response = mockResponse();
     const error = new ClientHttpError(
       response,
       JSON.stringify(mockProblemDetails({}).problemDetails),
@@ -136,9 +140,7 @@ describe("ClientHttpError", () => {
   });
 
   it("creates an object with problemDetails defaults when the response does not conform to RFC9457", () => {
-    const response = new Response(undefined, {
-      status: 400,
-      statusText: "Bad Request",
+    const response = mockResponse({
       headers: new Headers({
         "Content-Type": "text/plain",
       }),
@@ -157,13 +159,7 @@ describe("ClientHttpError", () => {
   });
 
   it("creates an Error object with problemDetails defaults when the response is malformed", () => {
-    const response = new Response(undefined, {
-      status: 400,
-      statusText: "Bad Request",
-      headers: new Headers({
-        "Content-Type": PROBLEM_DETAILS_MIME,
-      }),
-    });
+    const response = mockResponse();
     const error = new ClientHttpError(
       response,
       // The response body should be JSON, but it actually is a plain string.
@@ -179,7 +175,7 @@ describe("ClientHttpError", () => {
   });
 
   it("throws if the provided response is successful", () => {
-    const response = new Response(undefined, {
+    const response = mockResponse({
       status: 200,
       statusText: "OK",
     });
@@ -194,14 +190,7 @@ describe("ClientHttpError", () => {
     const responseUrl = "https://example.org/resource";
     const relativeTypeUrl = "../type";
     const relativeInstanceUrl = "../instance";
-    const response = new Response(undefined, {
-      status: 400,
-      statusText: "Bad Request",
-      headers: new Headers({
-        "Content-Type": "application/problem+json",
-      }),
-    });
-    jest.spyOn(response, "url", "get").mockReturnValue(responseUrl);
+    const response = mockResponse();
     const { problemDetails: mockedProblemDetails } = mockProblemDetails({});
     const error = new ClientHttpError(
       response,

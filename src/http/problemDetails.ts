@@ -125,12 +125,15 @@ export function hasProblemDetails(
   return isProblemDetails((error as WithProblemDetails).problemDetails);
 }
 
-function asUrl(url: string, base: string): URL | undefined {
-  try {
-    return new URL(url, base);
-  } catch {
-    return undefined;
+function asUrl(url: string | undefined, base: string): URL | undefined {
+  if (url !== undefined) {
+    try {
+      return new URL(url, base);
+    } catch {
+      /* no op */
+    }
   }
+  return undefined;
 }
 
 /**
