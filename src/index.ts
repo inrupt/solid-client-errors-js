@@ -34,3 +34,63 @@ export {
   type WithErrorResponse,
   hasErrorResponse,
 } from "./http/errorResponse";
+export {
+  BadRequestError,
+  BAD_REQUEST_STATUS,
+  type BadRequestErrorResponse,
+} from "./http/wellKnown/badRequestError";
+export {
+  ConflictError,
+  CONFLICT_STATUS,
+  type ConflictErrorResponse,
+} from "./http/wellKnown/conflictError";
+export {
+  ForbiddenError,
+  FORBIDDEN_STATUS,
+  type ForbiddenErrorResponse,
+} from "./http/wellKnown/forbiddenError";
+export {
+  GoneError,
+  GONE_STATUS,
+  type GoneErrorResponse,
+} from "./http/wellKnown/goneError";
+export {
+  InternalServerErrorError,
+  INTERNAL_SERVER_ERROR_STATUS,
+  type InternalServerErrorErrorResponse,
+} from "./http/wellKnown/internalServerErrorError";
+export {
+  MethodNotAllowedError,
+  METHOD_NOT_ALLOWED_STATUS,
+  type MethodNotAllowedErrorResponse,
+} from "./http/wellKnown/methodNotAllowedError";
+export {
+  NotAcceptableError,
+  NOT_ACCEPTABLE_STATUS,
+  type NotAcceptableErrorResponse,
+} from "./http/wellKnown/notAcceptableError";
+export {
+  NotFoundError,
+  NOT_FOUND_STATUS,
+  type NotFoundErrorResponse,
+} from "./http/wellKnown/notFoundError";
+export {
+  PreconditionFailedError as PreconditionsFailedError,
+  PRECONDITION_FAILED_STATUS as PRECONDITIONS_FAILED_STATUS,
+  type PreconditionFailedErrorResponse as PreconditionsFailedErrorResponse,
+} from "./http/wellKnown/preconditionFailedError";
+export {
+  TooManyRequestsError,
+  TOO_MANY_REQUESTS_STATUS,
+  type TooManyRequestsErrorResponse,
+} from "./http/wellKnown/tooManyRequestsError";
+export {
+  UnauthorizedError,
+  UNAUTHORIZED_STATUS,
+  type UnauthorizedErrorResponse,
+} from "./http/wellKnown/unauthorizedError";
+export {
+  UnsupportedMediaTypeError,
+  UNSUPPORTED_MEDIA_TYPE_STATUS,
+  type UnsupportedMediaTypeErrorResponse,
+} from "./http/wellKnown/unsupportedMediaTypeError";
