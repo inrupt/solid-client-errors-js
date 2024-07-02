@@ -188,8 +188,8 @@ describe("ClientHttpError", () => {
 
   it("supports relative URLs for type and instance", () => {
     const responseUrl = "https://example.org/resource";
-    const relativeTypeUrl = "../type";
-    const relativeInstanceUrl = "../instance";
+    const relativeTypeUrl = "/type";
+    const relativeInstanceUrl = "/instance";
     const response = mockResponse();
     const { problemDetails: mockedProblemDetails } = mockProblemDetails({});
     const error = new ClientHttpError(
