@@ -41,7 +41,11 @@ describe("InternalServerErrorError", () => {
     expect(() => {
       // The object is built to check an error is thrown.
       // eslint-disable-next-line no-new
-      new InternalServerErrorError(response, "Some response body", "Some error message");
+      new InternalServerErrorError(
+        response,
+        "Some response body",
+        "Some error message",
+      );
     }).toThrow();
   });
 });
