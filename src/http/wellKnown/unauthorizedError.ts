@@ -22,7 +22,7 @@ import { InruptClientError } from "../../clientError";
 import type { ErrorResponse } from "../errorResponse";
 import { ClientHttpError } from "../httpError";
 
-export const UNAUTHORIZED_STATUS = 412 as const;
+export const UNAUTHORIZED_STATUS = 401 as const;
 
 export type UnauthorizedErrorResponse = ErrorResponse & {
   status: typeof UNAUTHORIZED_STATUS;
