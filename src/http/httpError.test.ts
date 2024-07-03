@@ -21,13 +21,10 @@
 import { describe, it, expect, jest } from "@jest/globals";
 import { ClientHttpError } from "./httpError";
 import { mockProblemDetails } from "./problemDetails.mock";
-import {
-  DEFAULT_TYPE,
-  PROBLEM_DETAILS_MIME,
-  hasProblemDetails,
-} from "./problemDetails";
+import { DEFAULT_TYPE, hasProblemDetails } from "./problemDetails";
 import InruptClientError from "../clientError";
 import { hasErrorResponse } from "./errorResponse";
+import mockResponseBase from "./httpError.mock";
 
 const mockResponse = ({
   body,
@@ -42,15 +39,7 @@ const mockResponse = ({
   headers?: Headers;
   responseUrl?: string;
 } = {}): Response => {
-  const response = new Response(body ?? undefined, {
-    status: status ?? 400,
-    statusText: statusText ?? "Bad Request",
-    headers:
-      headers ??
-      new Headers({
-        "Content-Type": PROBLEM_DETAILS_MIME,
-      }),
-  });
+  const response = mockResponseBase({ body, status, statusText, headers });
   jest
     .spyOn(response, "url", "get")
     .mockReturnValue(responseUrl ?? "https://example.org/resource");
