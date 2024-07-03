@@ -50,6 +50,7 @@ import UnauthorizedError, {
 import UnsupportedMediaTypeError, {
   UNSUPPORTED_MEDIA_TYPE_STATUS,
 } from "./wellKnown/unsupportedMediaTypeError";
+import ClientHttpError from "./httpError";
 
 describe("handleErrorResponse", () => {
   it.each([
@@ -65,6 +66,8 @@ describe("handleErrorResponse", () => {
     [TOO_MANY_REQUESTS_STATUS, TooManyRequestsError],
     [UNAUTHORIZED_STATUS, UnauthorizedError],
     [UNSUPPORTED_MEDIA_TYPE_STATUS, UnsupportedMediaTypeError],
+    // Defaults to ClientHttpError for any other status code
+    [499, ClientHttpError],
   ])("maps %i status to %s class", (responseStatus, errorClass) => {
     const response = mockResponse({ status: responseStatus });
     const error = handleErrorResponse(
@@ -73,5 +76,12 @@ describe("handleErrorResponse", () => {
       "Some error message",
     );
     expect(error).toBeInstanceOf(errorClass);
+  });
+
+  it("throws on non-error response", () => {
+    const response = mockResponse({ status: 200 });
+    expect(() => {
+      handleErrorResponse(response, "Some response body", "Some error message");
+    }).toThrow();
   });
 });
