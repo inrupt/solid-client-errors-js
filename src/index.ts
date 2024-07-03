@@ -20,7 +20,8 @@
 //
 
 export { InruptClientError } from "./clientError";
-export { ClientHttpError, handleErrorResponse } from "./http/httpError";
+export { ClientHttpError } from "./http/httpError";
+export { handleErrorResponse } from "./http/handleErrorResponse";
 export {
   DEFAULT_TYPE,
   PROBLEM_DETAILS_MIME,
