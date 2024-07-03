@@ -87,11 +87,7 @@ export function handleErrorResponse(
     case GONE_STATUS:
       return new GoneError(responseMetadata, responseBody, message);
     case INTERNAL_SERVER_ERROR_STATUS:
-      return new InternalServerError(
-        responseMetadata,
-        responseBody,
-        message,
-      );
+      return new InternalServerError(responseMetadata, responseBody, message);
     case METHOD_NOT_ALLOWED_STATUS:
       return new MethodNotAllowedError(responseMetadata, responseBody, message);
     case NOT_ACCEPTABLE_STATUS:
