@@ -24,7 +24,7 @@ import { ClientHttpError } from "../httpError";
 
 export const INTERNAL_SERVER_ERROR_STATUS = 500 as const;
 
-export type InternalServerErrorErrorResponse = ErrorResponse & {
+export type InternalServerErrorResponse = ErrorResponse & {
   status: typeof INTERNAL_SERVER_ERROR_STATUS;
 };
 
@@ -34,7 +34,7 @@ export type InternalServerErrorErrorResponse = ErrorResponse & {
  * @see {@link https://www.rfc-editor.org/rfc/rfc9110#status.500 | RFC 9110 (15.6.1.) 500 Internal Server Error}
  * @since unreleased
  */
-export class InternalServerErrorError extends ClientHttpError {
+export class InternalServerError extends ClientHttpError {
   constructor(
     responseMetadata: {
       status: number;
@@ -49,14 +49,14 @@ export class InternalServerErrorError extends ClientHttpError {
     super(responseMetadata, responseBody, message, options);
     if (responseMetadata.status !== INTERNAL_SERVER_ERROR_STATUS) {
       throw new InruptClientError(
-        `Unexpected status found building InternalServerErrorError: expected ${INTERNAL_SERVER_ERROR_STATUS}, found ${responseMetadata.status}`,
+        `Unexpected status found building InternalServerError: expected ${INTERNAL_SERVER_ERROR_STATUS}, found ${responseMetadata.status}`,
       );
     }
   }
 
-  get response(): InternalServerErrorErrorResponse {
-    return super.response as InternalServerErrorErrorResponse;
+  get response(): InternalServerErrorResponse {
+    return super.response as InternalServerErrorResponse;
   }
 }
 
-export default InternalServerErrorError;
+export default InternalServerError;

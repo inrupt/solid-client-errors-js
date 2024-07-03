@@ -56,10 +56,10 @@ export {
   type GoneErrorResponse,
 } from "./http/wellKnown/goneError";
 export {
-  InternalServerErrorError,
+  InternalServerError,
   INTERNAL_SERVER_ERROR_STATUS,
-  type InternalServerErrorErrorResponse,
-} from "./http/wellKnown/internalServerErrorError";
+  type InternalServerErrorResponse,
+} from "./http/wellKnown/internalServerError";
 export {
   MethodNotAllowedError,
   METHOD_NOT_ALLOWED_STATUS,

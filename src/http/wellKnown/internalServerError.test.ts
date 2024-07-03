@@ -21,14 +21,14 @@
 import { describe, it, expect } from "@jest/globals";
 import { mockResponse } from "./wellKnown.mock";
 import {
-  InternalServerErrorError,
+  InternalServerError,
   INTERNAL_SERVER_ERROR_STATUS,
-} from "./internalServerErrorError";
+} from "./internalServerError";
 
-describe("InternalServerErrorError", () => {
+describe("InternalServerError", () => {
   it("builds an Error object when provided an response with status 500", () => {
     const response = mockResponse({ status: INTERNAL_SERVER_ERROR_STATUS });
-    const e = new InternalServerErrorError(
+    const e = new InternalServerError(
       response,
       "Some response body",
       "Some error message",
@@ -41,7 +41,7 @@ describe("InternalServerErrorError", () => {
     expect(() => {
       // The object is built to check an error is thrown.
       // eslint-disable-next-line no-new
-      new InternalServerErrorError(
+      new InternalServerError(
         response,
         "Some response body",
         "Some error message",

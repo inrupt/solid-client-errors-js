@@ -11,7 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
   thrown upon reception of an HTTP error response, i.e. 4xx and 5xx ranges. The two
   associated type guards are available to test for the presence of the specific properties
   exposed by the class.
-- `BadRequestError`, `ConflictError`, `ForbiddenError`, `GoneError`, `InternalServerErrorError`,
+- `BadRequestError`, `ConflictError`, `ForbiddenError`, `GoneError`, `InternalServerError`,
   `MethodNotAllowedError`, `NotAcceptableError`, `NotFoundError`, `PreconditionFailedError`,
   `TooManyRequestsError`, `UnauthorizedError`, `UnsupportedMediaTypeError`: Specializations
   of the `ClientHttpError` to represent common HTTP error responses.

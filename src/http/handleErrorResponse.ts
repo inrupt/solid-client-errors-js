@@ -25,9 +25,9 @@ import BadRequestError, {
 import ConflictError, { CONFLICT_STATUS } from "./wellKnown/conflictError";
 import ForbiddenError, { FORBIDDEN_STATUS } from "./wellKnown/forbiddenError";
 import GoneError, { GONE_STATUS } from "./wellKnown/goneError";
-import InternalServerErrorError, {
+import InternalServerError, {
   INTERNAL_SERVER_ERROR_STATUS,
-} from "./wellKnown/internalServerErrorError";
+} from "./wellKnown/internalServerError";
 import MethodNotAllowedError, {
   METHOD_NOT_ALLOWED_STATUS,
 } from "./wellKnown/methodNotAllowedError";
@@ -87,7 +87,7 @@ export function handleErrorResponse(
     case GONE_STATUS:
       return new GoneError(responseMetadata, responseBody, message);
     case INTERNAL_SERVER_ERROR_STATUS:
-      return new InternalServerErrorError(
+      return new InternalServerError(
         responseMetadata,
         responseBody,
         message,

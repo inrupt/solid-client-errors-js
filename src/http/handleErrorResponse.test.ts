@@ -28,9 +28,9 @@ import { mockResponse } from "./httpError.mock";
 import ConflictError, { CONFLICT_STATUS } from "./wellKnown/conflictError";
 import ForbiddenError, { FORBIDDEN_STATUS } from "./wellKnown/forbiddenError";
 import GoneError, { GONE_STATUS } from "./wellKnown/goneError";
-import InternalServerErrorError, {
+import InternalServerError, {
   INTERNAL_SERVER_ERROR_STATUS,
-} from "./wellKnown/internalServerErrorError";
+} from "./wellKnown/internalServerError";
 import MethodNotAllowedError, {
   METHOD_NOT_ALLOWED_STATUS,
 } from "./wellKnown/methodNotAllowedError";
@@ -58,7 +58,7 @@ describe("handleErrorResponse", () => {
     [CONFLICT_STATUS, ConflictError],
     [FORBIDDEN_STATUS, ForbiddenError],
     [GONE_STATUS, GoneError],
-    [INTERNAL_SERVER_ERROR_STATUS, InternalServerErrorError],
+    [INTERNAL_SERVER_ERROR_STATUS, InternalServerError],
     [METHOD_NOT_ALLOWED_STATUS, MethodNotAllowedError],
     [NOT_ACCEPTABLE_STATUS, NotAcceptableError],
     [NOT_FOUND_STATUS, NotFoundError],
