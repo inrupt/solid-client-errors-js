@@ -23,7 +23,7 @@ import { BadRequestError, BAD_REQUEST_STATUS } from "./badRequestError";
 import { mockResponse } from "./wellKnown.mock";
 
 describe("BadRequestError", () => {
-  it("builds an Error object when provided an response with status 400", () => {
+  it("builds an Error object when provided a response with status 400", () => {
     const response = mockResponse({ status: BAD_REQUEST_STATUS });
     const e = new BadRequestError(
       response,
