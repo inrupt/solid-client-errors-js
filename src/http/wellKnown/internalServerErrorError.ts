@@ -22,7 +22,7 @@ import { InruptClientError } from "../../clientError";
 import type { ErrorResponse } from "../errorResponse";
 import { ClientHttpError } from "../httpError";
 
-export const INTERNAL_SERVER_ERROR_STATUS = 410 as const;
+export const INTERNAL_SERVER_ERROR_STATUS = 500 as const;
 
 export type InternalServerErrorErrorResponse = ErrorResponse & {
   status: typeof INTERNAL_SERVER_ERROR_STATUS;
