@@ -35,13 +35,12 @@ import {
   getPodRoot,
 } from "@inrupt/internal-test-env";
 import { Session } from "@inrupt/solid-client-authn-node";
-import { getPodUrlAll } from "@inrupt/solid-client";
 
 import {
   NotAcceptableError,
   NotFoundError,
   UnauthorizedError,
-  handleErrorResponse
+  handleErrorResponse,
 } from "../../src/index";
 
 custom.setHttpOptionsDefaults({
