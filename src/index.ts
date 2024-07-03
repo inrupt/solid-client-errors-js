@@ -75,9 +75,9 @@ export {
   type NotFoundErrorResponse,
 } from "./http/wellKnown/notFoundError";
 export {
-  PreconditionFailedError as PreconditionsFailedError,
-  PRECONDITION_FAILED_STATUS as PRECONDITIONS_FAILED_STATUS,
-  type PreconditionFailedErrorResponse as PreconditionsFailedErrorResponse,
+  PreconditionFailedError,
+  PRECONDITION_FAILED_STATUS,
+  type PreconditionFailedErrorResponse,
 } from "./http/wellKnown/preconditionFailedError";
 export {
   TooManyRequestsError,
