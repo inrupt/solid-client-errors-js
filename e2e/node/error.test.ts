@@ -41,6 +41,7 @@ import {
   NotAcceptableError,
   NotFoundError,
   UnauthorizedError,
+  handleErrorResponse
 } from "../../src/index";
 
 custom.setHttpOptionsDefaults({
@@ -78,11 +79,12 @@ describe(`End-to-end error description test for ${ENV.environment}`, () => {
     // This unauthenticated fetch should get a 401 response.
     const response = await fetch(podRoot);
     const responseBody = await response.text();
-    const error = new UnauthorizedError(
+    const error = handleErrorResponse(
       response,
       responseBody,
       "Some error message",
     );
+    expect(error).toBeInstanceOf(UnauthorizedError);
     expect(error.problemDetails.detail).toBeDefined();
     expect(error.problemDetails.instance).toBeDefined();
   });
@@ -93,11 +95,12 @@ describe(`End-to-end error description test for ${ENV.environment}`, () => {
       new URL("some-missing-resource", podRoot),
     );
     const responseBody = await response.text();
-    const error = new NotFoundError(
+    const error = handleErrorResponse(
       response,
       responseBody,
       "Some error message",
     );
+    expect(error).toBeInstanceOf(NotFoundError);
     expect(error.problemDetails.detail).toBeDefined();
     expect(error.problemDetails.instance).toBeDefined();
   });
@@ -110,11 +113,12 @@ describe(`End-to-end error description test for ${ENV.environment}`, () => {
       },
     });
     const responseBody = await response.text();
-    const error = new NotAcceptableError(
+    const error = handleErrorResponse(
       response,
       responseBody,
       "Some error message",
     );
+    expect(error).toBeInstanceOf(NotAcceptableError);
     expect(error.problemDetails.detail).toBeDefined();
     expect(error.problemDetails.instance).toBeDefined();
   });
