@@ -22,7 +22,7 @@
 /**
  * A subset of the {@link Response} type metadata.
  *
- * @since unreleased
+ * @since 0.0.1
  */
 export type ResponseMetadata = Pick<
   Response,
@@ -32,7 +32,7 @@ export type ResponseMetadata = Pick<
 /**
  * Relevant details of an HTTP error response.
  *
- * @since unreleased
+ * @since 0.0.1
  */
 export type ErrorResponse = Readonly<
   ResponseMetadata & {
@@ -45,7 +45,7 @@ export type ErrorResponse = Readonly<
  * Extension to an Error thrown on an unsuccessful HTTP response
  * to link to a {@link ErrorResponse} instance.
  *
- * @since unreleased
+ * @since 0.0.1
  */
 export interface WithErrorResponse {
   response: ErrorResponse;
@@ -80,7 +80,7 @@ function isErrorResponse(
  * ```
  *
  * @alpha
- * @since unreleased
+ * @since 0.0.1
  * @param error the error being checked.
  * @returns whether the error has HTTP error details attached.
  */

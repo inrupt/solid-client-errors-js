@@ -32,7 +32,7 @@ export type TooManyRequestsErrorResponse = ErrorResponse & {
  * Runtime error thrown on HTTP Too Many Requests (429) response.
  *
  * @see {@link https://www.rfc-editor.org/rfc/rfc6585#section-4 | RFC 6585 (4.) 429 Too Many Requests}
- * @since unreleased
+ * @since 0.0.1
  */
 export class TooManyRequestsError extends ClientHttpError {
   constructor(

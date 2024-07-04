@@ -24,13 +24,13 @@ import type { ErrorResponse } from "./errorResponse";
 /**
  * The Problem Details MIME type documented in {@link https://www.rfc-editor.org/rfc/rfc9457}.
  *
- * @since unreleased
+ * @since 0.0.1
  */
 export const PROBLEM_DETAILS_MIME = "application/problem+json";
 /**
  * The default type problem documented in {@link https://www.rfc-editor.org/rfc/rfc9457#name-aboutblank}.
  *
- * @since unreleased
+ * @since 0.0.1
  */
 export const DEFAULT_TYPE = new URL("about:blank");
 
@@ -38,7 +38,7 @@ export const DEFAULT_TYPE = new URL("about:blank");
  * Structured representation of the issue underlying an error response
  * from an HTTP API.
  *
- * @since unreleased
+ * @since 0.0.1
  */
 export type ProblemDetails = Readonly<{
   /**
@@ -68,7 +68,7 @@ export type ProblemDetails = Readonly<{
  * Extension to an Error thrown on an unsuccessful HTTP response
  * to link to a {@link ProblemDetails} instance.
  *
- * @since unreleased
+ * @since 0.0.1
  */
 export interface WithProblemDetails {
   /**
@@ -115,7 +115,7 @@ function isProblemDetails(
  * ```
  *
  * @alpha
- * @since unreleased
+ * @since 0.0.1
  * @param error the error being checked.
  * @returns whether the error has problem details attached.
  */

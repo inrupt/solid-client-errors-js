@@ -32,7 +32,7 @@ export type UnauthorizedErrorResponse = ErrorResponse & {
  * Runtime error thrown on HTTP Unauthorized (401) response.
  *
  * @see {@link https://www.rfc-editor.org/rfc/rfc9110#status.401 | RFC 9110 (15.5.2.) 401 Unauthorized}
- * @since unreleased
+ * @since 0.0.1
  */
 export class UnauthorizedError extends ClientHttpError {
   constructor(

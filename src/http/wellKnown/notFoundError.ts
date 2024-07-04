@@ -32,7 +32,7 @@ export type NotFoundErrorResponse = ErrorResponse & {
  * Runtime error thrown on HTTP Not Found (404) response.
  *
  * @see {@link https://www.rfc-editor.org/rfc/rfc9110#status.404 | RFC 9110 (15.5.5.) 404 Not Found}
- * @since unreleased
+ * @since 0.0.1
  */
 export class NotFoundError extends ClientHttpError {
   constructor(

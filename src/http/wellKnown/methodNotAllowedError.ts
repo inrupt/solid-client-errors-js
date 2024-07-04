@@ -32,7 +32,7 @@ export type MethodNotAllowedErrorResponse = ErrorResponse & {
  * Runtime error thrown on HTTP Method Not Allowed (405) response.
  *
  * @see {@link https://www.rfc-editor.org/rfc/rfc9110#status.405 | RFC 9110 (15.5.6.) 405 Method Not Allowed}
- * @since unreleased
+ * @since 0.0.1
  */
 export class MethodNotAllowedError extends ClientHttpError {
   constructor(

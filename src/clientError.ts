@@ -22,7 +22,7 @@
 /**
  * Superclass of all errors thrown by Inrupt's client libraries.
  *
- * @since unreleased
+ * @since 0.0.1
  */
 export class InruptClientError extends Error {}
 
