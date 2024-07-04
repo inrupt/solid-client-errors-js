@@ -1,7 +1,7 @@
 {
   "name": "@inrupt/solid-client-errors-js",
   "description": "An RFC9457 Problem Details handling library.",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "build": "rollup --config rollup.config.mjs",
