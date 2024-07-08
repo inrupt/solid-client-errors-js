@@ -36,22 +36,13 @@ const DEV_2_3_RESOURCE =
 const PODSPACES_RESOURCE =
   "https://storage.inrupt.com/712de2ca-7910-434b-ac85-eaa0fe70438d/";
 
-
-
-
-
-
-
-
-
-
 const handleUnauthorizedError = (e) => {
   if (e instanceof UnauthorizedError) {
-    const messageSummary = `<p>You are not authorized to access <a href="${}"> this resource</a>.</p>`;
+    const messageSummary = `<p>You are not authorized to access <a href="${e.response.url}"> this resource</a>.</p>`;
     const messageSuggestion =
       "<p>Check that you are <strong>logged in</strong>.</p>";
     const messageFollowUp =
-       === undefined
+      e.problemDetails.instance === undefined
         ? ""
         : `<p>If the issue persists,reach out to your system administrator using the following error identifier ${e.problemDetails.instance}</p>`;
     document.getElementById("p-error-description").innerHTML =
@@ -59,17 +50,6 @@ const handleUnauthorizedError = (e) => {
     document.getElementById("dialog-error").showModal();
   }
 };
-
-
-
-
-
-
-
-
-
-
-
 
 const unauthorizedFetchCallback = async () => {
   const targetServer = document.querySelector(
