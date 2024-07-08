@@ -32,7 +32,7 @@ export type InternalServerErrorResponse = ErrorResponse & {
  * Runtime error thrown on HTTP Conflict (500) response.
  *
  * @see {@link https://www.rfc-editor.org/rfc/rfc9110#status.500 | RFC 9110 (15.6.1.) 500 Internal Server Error}
- * @since unreleased
+ * @since 0.0.1
  */
 export class InternalServerError extends ClientHttpError {
   constructor(

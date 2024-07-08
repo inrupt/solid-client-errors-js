@@ -65,7 +65,7 @@ import UnsupportedMediaTypeError, {
  * @param message the error message
  * @returns an instance of the ClientHttpError subclass matching the response metadata status.
  * If the response status is unkown, the generic ClientHttpError class is used.
- * @since unreleased
+ * @since 0.0.1
  */
 export function handleErrorResponse(
   responseMetadata: {

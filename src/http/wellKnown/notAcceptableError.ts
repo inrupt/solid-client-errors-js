@@ -32,7 +32,7 @@ export type NotAcceptableErrorResponse = ErrorResponse & {
  * Runtime error thrown on HTTP Not Acceptable (406) response.
  *
  * @see {@link https://www.rfc-editor.org/rfc/rfc9110#status.406 | RFC 9110 (15.5.7.) 406 Not Acceptable}
- * @since unreleased
+ * @since 0.0.1
  */
 export class NotAcceptableError extends ClientHttpError {
   constructor(

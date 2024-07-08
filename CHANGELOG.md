@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 ## Unreleased changes
 
+## [0.0.1](https://github.com/inrupt/solid-client-errors-js/releases/tag/v0.0.1) - 2024-07-03
+
 ### New Features
 
 - `InruptClientError`: Superclass for all Inrupt client libraries runtime errors.
