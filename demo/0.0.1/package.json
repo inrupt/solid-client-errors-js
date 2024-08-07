@@ -1,0 +1,22 @@
+{
+  "name": "solid-client-errors-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@inrupt/solid-client": "^2.0.1",
+    "@inrupt/solid-client-access-grants": "^3.0.4",
+    "@inrupt/solid-client-authn-browser": "^2.2.4",
+    "@inrupt/solid-client-errors": "^0.0.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.92.1",
+    "webpack-cli": "^5.1.4"
+  }
+}

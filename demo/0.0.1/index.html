@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>Error description demo</title>
+  </head>
+  <body>
+    <fieldset>
+      <legend>Pick an ESS instance:</legend>
+    
+      <div>
+        <input type="radio" id="radio-error-description-podspaces" name="error-description" value="podspaces" />
+        <label for="radio-error-description-podspaces">Podspaces (ESS 2.2)</label>
+      </div>
+    
+      <div>
+        <input type="radio" id="radio-error-description-dev-2-3" name="error-description" value="dev-2-3" />
+        <label for="radio-error-description-dev-2-3">ESS dev-2-3</label>
+      </div>
+    </fieldset>
+    <button type="button" id="button-unauthorized-fetch">Unauthorized fetch</button>
+    <button type="button" id="button-login">login</button>
+
+    <button type="button" id="button-unacceptable-fetch">Unacceptable fetch</button>
+    <dialog id="dialog-error">
+      <button id="button-close-dialog">Close</button>
+      <p id="p-error-description"></p>
+    </dialog>    
+    <script src="./dist/main.js" type="module"></script>
+  </body>
+</html>
