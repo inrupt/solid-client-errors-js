@@ -40,6 +40,8 @@ import {
   NotAcceptableError,
   NotFoundError,
   UnauthorizedError,
+  BadRequestError,
+  ForbiddenError,
   handleErrorResponse,
 } from "../../src/index";
 
@@ -84,6 +86,8 @@ describe(`End-to-end error description test for ${ENV.environment}`, () => {
       "Some error message",
     );
     expect(error).toBeInstanceOf(UnauthorizedError);
+    expect(error.problemDetails.status).toBe(401);
+    expect(error.problemDetails.title).toBe("Unauthorized");
     expect(error.problemDetails.detail).toBeDefined();
     expect(error.problemDetails.instance).toBeDefined();
   });
@@ -100,6 +104,8 @@ describe(`End-to-end error description test for ${ENV.environment}`, () => {
       "Some error message",
     );
     expect(error).toBeInstanceOf(NotFoundError);
+    expect(error.problemDetails.status).toBe(404);
+    expect(error.problemDetails.title).toBe("Not Found");
     expect(error.problemDetails.detail).toBeDefined();
     expect(error.problemDetails.instance).toBeDefined();
   });
@@ -118,6 +124,51 @@ describe(`End-to-end error description test for ${ENV.environment}`, () => {
       "Some error message",
     );
     expect(error).toBeInstanceOf(NotAcceptableError);
+    expect(error.problemDetails.status).toBe(406);
+    expect(error.problemDetails.title).toBe("Not Acceptable");
+    expect(error.problemDetails.detail).toBeDefined();
+    expect(error.problemDetails.instance).toBeDefined();
+  });
+
+  it("returns an RFC9457 error response for bad request", async () => {
+    const podRoot = await getPodRoot(authenticatedSession);
+    const response = await authenticatedSession.fetch(
+      new URL("some-container/", podRoot),
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "text/turtle",
+        },
+        body: "Invalid RDF Content!",
+      },
+    );
+    const responseBody = await response.text();
+    const error = handleErrorResponse(
+      response,
+      responseBody,
+      "Some error message",
+    );
+    expect(error).toBeInstanceOf(BadRequestError);
+    expect(error.problemDetails.status).toBe(400);
+    expect(error.problemDetails.title).toBe("Bad Request");
+    expect(error.problemDetails.detail).toBeDefined();
+    expect(error.problemDetails.instance).toBeDefined();
+  });
+
+  it("returns an RFC9457 error response for forbidden request", async () => {
+    const podRoot = await getPodRoot(authenticatedSession);
+    const response = await authenticatedSession.fetch(podRoot, {
+      method: "DELETE",
+    });
+    const responseBody = await response.text();
+    const error = handleErrorResponse(
+      response,
+      responseBody,
+      "Some error message",
+    );
+    expect(error).toBeInstanceOf(ForbiddenError);
+    expect(error.problemDetails.status).toBe(403);
+    expect(error.problemDetails.title).toBe("Forbidden");
     expect(error.problemDetails.detail).toBeDefined();
     expect(error.problemDetails.instance).toBeDefined();
   });
