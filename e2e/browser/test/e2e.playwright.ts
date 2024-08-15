@@ -154,7 +154,7 @@ test("405 problem details error", async ({ page, auth }) => {
 
   await expectProblemDetails(
     page,
-    "406",
+    "405",
     "Method Not Allowed",
     "The server application intentionally responded with an HTTP error response status.",
   );
