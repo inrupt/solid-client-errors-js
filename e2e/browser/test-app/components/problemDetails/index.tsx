@@ -199,7 +199,7 @@ export default function ProblemDetailsClient({
             id={"forbidden"}
             name={"Forbidden"}
             performRequest={
-              // This request should get return a 406 response.
+              // This request should get return a 403 response.
               () =>
                 session.fetch(storageUrl, {
                   method: "DELETE",
