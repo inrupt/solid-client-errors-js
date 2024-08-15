@@ -182,7 +182,7 @@ export default function ProblemDetailsClient({
             id={"badRequest"}
             name={"Bad Request"}
             performRequest={
-              // This request should get return a 406 response.
+              // This request should get return a 400 response.
               () =>
                 session.fetch(new URL("some-container/", storageUrl), {
                   method: "PUT",
