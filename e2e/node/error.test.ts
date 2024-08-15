@@ -42,6 +42,7 @@ import {
   UnauthorizedError,
   BadRequestError,
   ForbiddenError,
+  MethodNotAllowedError,
   handleErrorResponse,
 } from "../../src/index";
 
@@ -192,7 +193,7 @@ describe(`End-to-end error description test for ${ENV.environment}`, () => {
       responseBody,
       "Some error message",
     );
-    expect(error).toBeInstanceOf(ForbiddenError);
+    expect(error).toBeInstanceOf(MethodNotAllowedError);
     expect(error.message).toBe("Some error message");
     expect(error.problemDetails.status).toBe(405);
     expect(error.problemDetails.title).toBe("Method Not Found");
