@@ -12,7 +12,7 @@
     "lint": "npm run lint:check",
     "lint:fix": "npm run lint:eslint -- --fix",
     "lint:check": "npm run lint:eslint && npm run lint:prettier -- --check",
-    "lint:eslint": "eslint --config .eslintrc.js .",
+    "lint:eslint": "eslint --config .eslintrc.js \"src/\"",
     "lint:prettier": "prettier \"{src,e2e}/**/*.{ts,tsx,js,jsx,css}\" \"**/*.{md,mdx,yml}\"",
     "prepublishOnly": "npm run build",
     "test": "jest --ignoreProjects e2e-node --passWithNoTests",

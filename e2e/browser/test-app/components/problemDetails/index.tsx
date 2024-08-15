@@ -25,7 +25,8 @@
 import { useEffect, useState } from "react";
 import { getPodUrlAll } from "@inrupt/solid-client";
 import type { Session } from "@inrupt/solid-client-authn-browser";
-import { ProblemDetails, handleErrorResponse } from "@inrupt/solid-client-errors";
+import type { ProblemDetails } from "@inrupt/solid-client-errors";
+import { handleErrorResponse } from "@inrupt/solid-client-errors";
 
 interface ButtonProps {
   id: string;
@@ -37,29 +38,37 @@ interface ButtonProps {
 const RequestButton = (props: ButtonProps) => {
   return (
     <div>
-      <button type="button"
-              onClick={async () => {
-                const response = await props.performRequest();
-                if (response.ok) {
-                  throw new Error("Should not get here as this component is to test request errors.");
-                } else {
-                  const responseBody = await response.text();
-                  const error = handleErrorResponse(
-                    response,
-                    responseBody,
-                    "Request to: " + response.url + " failed"
-                  );
-                  props.handleProblemDetails(error.problemDetails);
-                }
-              }}
-              data-testid={ props.id }>
+      <button
+        type="button"
+        onClick={async () => {
+          const response = await props.performRequest();
+          if (response.ok) {
+            throw new Error(
+              "Should not get here as this component is to test request errors.",
+            );
+          } else {
+            const responseBody = await response.text();
+            const error = handleErrorResponse(
+              response,
+              responseBody,
+              `Request to: ${response.url} failed`,
+            );
+            props.handleProblemDetails(error.problemDetails);
+          }
+        }}
+        data-testid={props.id}
+      >
         {props.name}
       </button>
     </div>
   );
 };
 
-export default function ProblemDetailsClient({ session }: { session: Session }) {
+export default function ProblemDetailsClient({
+  session,
+}: {
+  session: Session;
+}) {
   const [storageUrl, setStorageUrl] = useState<string>();
   const [problemDetails, setProblemDetails] = useState<
     ProblemDetails | undefined
@@ -68,7 +77,7 @@ export default function ProblemDetailsClient({ session }: { session: Session }) 
   useEffect(() => {
     if (session.info.webId !== undefined) {
       getPodUrlAll(session.info.webId as string, {
-        fetch: session.fetch
+        fetch: session.fetch,
       })
         .then((pods) => {
           if (pods.length === 0) {
@@ -86,54 +95,48 @@ export default function ProblemDetailsClient({ session }: { session: Session }) 
         <p>
           Storage Container:{" "}
           <em>
-          <span data-testid="storageUrl">
-            {storageUrl ?? "None"}
-          </span>
+            <span data-testid="storageUrl">{storageUrl ?? "None"}</span>
           </em>
         </p>
       </div>
       <div data-testid="pdContainer">
-        <p>
-          RFC9457 Problem Details:
-        </p>
+        <p>RFC9457 Problem Details:</p>
         <p>
           Type:{" "}
           <em>
-          <span data-testid="pdType">
-            {problemDetails?.type.toString() ?? "None"}
-          </span>
+            <span data-testid="pdType">
+              {problemDetails?.type.toString() ?? "None"}
+            </span>
           </em>
         </p>
         <p>
           Status:{" "}
           <em>
-          <span data-testid="pdStatus">
-            {problemDetails?.status ?? "None"}
-          </span>
+            <span data-testid="pdStatus">
+              {problemDetails?.status ?? "None"}
+            </span>
           </em>
         </p>
         <p>
           Title:{" "}
           <em>
-          <span data-testid="pdTitle">
-            {problemDetails?.title ?? "None"}
-          </span>
+            <span data-testid="pdTitle">{problemDetails?.title ?? "None"}</span>
           </em>
         </p>
         <p>
           Detail:{" "}
           <em>
-          <span data-testid="pdDetail">
-            {problemDetails?.detail ?? "None"}
-          </span>
+            <span data-testid="pdDetail">
+              {problemDetails?.detail ?? "None"}
+            </span>
           </em>
         </p>
         <p>
           Instance:{" "}
           <em>
-          <span data-testid="pdInstance">
-            {problemDetails?.instance?.toString() ?? "None"}
-          </span>
+            <span data-testid="pdInstance">
+              {problemDetails?.instance?.toString() ?? "None"}
+            </span>
           </em>
         </p>
       </div>
@@ -147,7 +150,8 @@ export default function ProblemDetailsClient({ session }: { session: Session }) 
               // This request should get return a 401 response.
               () => fetch(storageUrl)
             }
-            handleProblemDetails={setProblemDetails} />
+            handleProblemDetails={setProblemDetails}
+          />
 
           <RequestButton
             id={"notFound"}
@@ -156,49 +160,53 @@ export default function ProblemDetailsClient({ session }: { session: Session }) 
               // This request should get return a 404 response.
               () => session.fetch(new URL("some-missing-resource", storageUrl))
             }
-            handleProblemDetails={setProblemDetails} />
+            handleProblemDetails={setProblemDetails}
+          />
 
           <RequestButton
             id={"notAcceptable"}
             name={"Not Acceptable"}
             performRequest={
               // This request should get return a 406 response.
-              () => session.fetch(storageUrl, {
-                headers: {
-                  Accept: "text/csv"
-                }
-              })
+              () =>
+                session.fetch(storageUrl, {
+                  headers: {
+                    Accept: "text/csv",
+                  },
+                })
             }
-            handleProblemDetails={setProblemDetails} />
+            handleProblemDetails={setProblemDetails}
+          />
 
           <RequestButton
             id={"badRequest"}
             name={"Bad Request"}
             performRequest={
               // This request should get return a 406 response.
-              () => session.fetch(new URL("some-container/", storageUrl),
-                {
+              () =>
+                session.fetch(new URL("some-container/", storageUrl), {
                   method: "PUT",
                   headers: {
-                    "Content-Type": "text/turtle"
+                    "Content-Type": "text/turtle",
                   },
-                  body: "Invalid RDF Content!"
+                  body: "Invalid RDF Content!",
                 })
             }
-            handleProblemDetails={setProblemDetails} />
+            handleProblemDetails={setProblemDetails}
+          />
 
           <RequestButton
             id={"forbidden"}
             name={"Forbidden"}
             performRequest={
               // This request should get return a 406 response.
-              () => session.fetch(storageUrl,
-                {
-                  method: "DELETE"
+              () =>
+                session.fetch(storageUrl, {
+                  method: "DELETE",
                 })
             }
-            handleProblemDetails={setProblemDetails} />
-
+            handleProblemDetails={setProblemDetails}
+          />
         </>
       ) : (
         <></>

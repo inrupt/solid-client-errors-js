@@ -28,13 +28,13 @@ import {
   login,
   logout,
   handleIncomingRedirect,
-  getDefaultSession
+  getDefaultSession,
 } from "@inrupt/solid-client-authn-browser";
 import {
   TESTID_LOGIN_BUTTON,
   TESTID_LOGOUT_BUTTON,
   TESTID_OPENID_PROVIDER_INPUT,
-  TESTID_SESSION_STATUS
+  TESTID_SESSION_STATUS,
 } from "@inrupt/internal-playwright-testids";
 import ProblemDetailsClient from "../problemDetails";
 
@@ -57,7 +57,7 @@ export default function AppContainer() {
       await login({
         redirectUrl: REDIRECT_URL,
         oidcIssuer: issuer,
-        clientName: APP_NAME
+        clientName: APP_NAME,
       });
     } catch (err) {
       console.error(err);
