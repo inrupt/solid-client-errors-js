@@ -1,0 +1,30 @@
+{
+  "name": "test",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@inrupt/internal-playwright-testids": "^3.1.0",
+    "@inrupt/internal-playwright-helpers": "^3.2.1",
+    "@inrupt/solid-client": "^2.0.1",
+    "@inrupt/solid-client-authn-browser": "^2.2.4",
+    "@inrupt/solid-client-errors": "file:../../..",
+    "@inrupt/vocab-common-rdf": "^1.0.5",
+    "next": "^14.2.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.6",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "eslint": "^8.12.0",
+    "eslint-config-next": "^14.2.5",
+    "typescript": "^4.7.4"
+  }
+}

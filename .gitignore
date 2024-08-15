@@ -130,3 +130,6 @@ dist
 .pnp.*
 
 docs/api/source/
+
+# Playwright test results
+test-results/
