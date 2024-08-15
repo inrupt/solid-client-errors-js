@@ -196,7 +196,7 @@ describe(`End-to-end error description test for ${ENV.environment}`, () => {
     expect(error).toBeInstanceOf(MethodNotAllowedError);
     expect(error.message).toBe("Some error message");
     expect(error.problemDetails.status).toBe(405);
-    expect(error.problemDetails.title).toBe("Method Not Found");
+    expect(error.problemDetails.title).toBe("Method Not Allowed");
     expect(error.problemDetails.detail).toBeDefined();
     expect(error.problemDetails.instance).toBeDefined();
   });
