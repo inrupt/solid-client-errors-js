@@ -35,13 +35,26 @@ async function waitFor(page: Page) {
   await expect(page.getByTestId("pdType")).toContainText("None");
 }
 
-async function expectProblemDetails(page: Page, status: string, title: string, detailContains: string) {
+async function expectProblemDetails(
+  page: Page,
+  status: string,
+  title: string,
+  detailContains: string,
+) {
   // The Problem Details error should be displayed.
-  await expect(page.locator("span[data-testid=pdType]")).toContainText("about:blank");
-  await expect(page.locator("span[data-testid=pdStatus]")).toContainText(status);
+  await expect(page.locator("span[data-testid=pdType]")).toContainText(
+    "about:blank",
+  );
+  await expect(page.locator("span[data-testid=pdStatus]")).toContainText(
+    status,
+  );
   await expect(page.locator("span[data-testid=pdTitle]")).toContainText(title);
-  await expect(page.locator("span[data-testid=pdDetail]")).toContainText(detailContains);
-  await expect(page.locator("span[data-testid=pdInstance]")).toContainText(/https:\/\//);
+  await expect(page.locator("span[data-testid=pdDetail]")).toContainText(
+    detailContains,
+  );
+  await expect(page.locator("span[data-testid=pdInstance]")).toContainText(
+    /https:\/\//,
+  );
 }
 
 test("401 problem details error", async ({ page, auth }) => {
@@ -51,14 +64,14 @@ test("401 problem details error", async ({ page, auth }) => {
   await Promise.all([
     page.waitForRequest((request) => request.method() === "GET"),
     page.waitForResponse((response) => response.status() === 401),
-    page.click("button[data-testid=notAuthorized]")
+    page.click("button[data-testid=notAuthorized]"),
   ]);
 
   await expectProblemDetails(
     page,
     "401",
     "Unauthorized",
-    "The server application intentionally responded with an HTTP error response status"
+    "The server application intentionally responded with an HTTP error response status",
   );
 });
 
@@ -69,15 +82,10 @@ test("404 problem details error", async ({ page, auth }) => {
   await Promise.all([
     page.waitForRequest((request) => request.method() === "GET"),
     page.waitForResponse((response) => response.status() === 404),
-    page.click("button[data-testid=notFound]")
+    page.click("button[data-testid=notFound]"),
   ]);
 
-  await expectProblemDetails(
-    page,
-    "404",
-    "Not Found",
-    "Resource not found"
-  );
+  await expectProblemDetails(page, "404", "Not Found", "Resource not found");
 });
 
 test("406 problem details error", async ({ page, auth }) => {
@@ -87,14 +95,14 @@ test("406 problem details error", async ({ page, auth }) => {
   await Promise.all([
     page.waitForRequest((request) => request.method() === "GET"),
     page.waitForResponse((response) => response.status() === 406),
-    page.click("button[data-testid=notAcceptable]")
+    page.click("button[data-testid=notAcceptable]"),
   ]);
 
   await expectProblemDetails(
     page,
     "406",
     "Not Acceptable",
-    "Unable to produce an RDF response matching Accept header value"
+    "Unable to produce an RDF response matching Accept header value",
   );
 });
 
@@ -105,14 +113,14 @@ test("400 problem details error", async ({ page, auth }) => {
   await Promise.all([
     page.waitForRequest((request) => request.method() === "PUT"),
     page.waitForResponse((response) => response.status() === 400),
-    page.click("button[data-testid=badRequest]")
+    page.click("button[data-testid=badRequest]"),
   ]);
 
   await expectProblemDetails(
     page,
     "400",
     "Bad Request",
-    "RDF source is malformed."
+    "RDF source is malformed.",
   );
 });
 
@@ -123,13 +131,13 @@ test("403 problem details error", async ({ page, auth }) => {
   await Promise.all([
     page.waitForRequest((request) => request.method() === "DELETE"),
     page.waitForResponse((response) => response.status() === 403),
-    page.click("button[data-testid=forbidden]")
+    page.click("button[data-testid=forbidden]"),
   ]);
 
   await expectProblemDetails(
     page,
     "403",
     "Forbidden",
-    "The server application intentionally responded with an HTTP error response status."
+    "The server application intentionally responded with an HTTP error response status.",
   );
 });
