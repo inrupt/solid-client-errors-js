@@ -141,3 +141,21 @@ test("403 problem details error", async ({ page, auth }) => {
     "The server application intentionally responded with an HTTP error response status.",
   );
 });
+
+test("405 problem details error", async ({ page, auth }) => {
+  await auth.login({ allow: true });
+  await waitFor(page);
+
+  await Promise.all([
+    page.waitForRequest((request) => request.method() === "DELETE"),
+    page.waitForResponse((response) => response.status() === 406),
+    page.click("button[data-testid=methodNotAllowed]"),
+  ]);
+
+  await expectProblemDetails(
+    page,
+    "406",
+    "Method Not Allowed",
+    "The server application intentionally responded with an HTTP error response status.",
+  );
+});

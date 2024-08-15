@@ -207,6 +207,19 @@ export default function ProblemDetailsClient({
             }
             handleProblemDetails={setProblemDetails}
           />
+
+          <RequestButton
+            id={"methodNotAllowed"}
+            name={"Method Not Allowed"}
+            performRequest={
+              // This request should get return a 405 response.
+              () =>
+                session.fetch(new URL("/.well-known/solid", storageUrl), {
+                  method: "DELETE",
+                })
+            }
+            handleProblemDetails={setProblemDetails}
+          />
         </>
       ) : (
         <></>
