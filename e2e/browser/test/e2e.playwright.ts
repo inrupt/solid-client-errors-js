@@ -148,7 +148,7 @@ test("405 problem details error", async ({ page, auth }) => {
 
   await Promise.all([
     page.waitForRequest((request) => request.method() === "DELETE"),
-    page.waitForResponse((response) => response.status() === 406),
+    page.waitForResponse((response) => response.status() === 405),
     page.click("button[data-testid=methodNotAllowed]"),
   ]);
 
