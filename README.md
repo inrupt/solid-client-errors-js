@@ -35,8 +35,7 @@ and `String.prototype.endsWith`.
 
 ## Node.js Support
 
-Our JavaScript Client Libraries track Node.js [LTS
-releases](https://nodejs.org/en/about/releases/), and support 18.x, 20.x, and 22.x.
+See [Inrupt’s Javascript Client libraries documentation](https://docs.inrupt.com/developer-tools/javascript/client-libraries/#node-js-support).
 
 # Installation
 

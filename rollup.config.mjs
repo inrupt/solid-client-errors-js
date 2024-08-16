@@ -1,4 +1,4 @@
-import pkg from "./package.json" assert { type: "json" };
+import pkg from "./package.json" with { type: "json" };
 import sharedConfig from "@inrupt/base-rollup-config";
 
 const config = sharedConfig(pkg);
