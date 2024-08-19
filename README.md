@@ -67,7 +67,6 @@ Integrators of this library will generally use the following pattern to throw
 a subclass of `ClientHttpError`, corresponding to the response status.
 
 ```javascript
-
 import { handleErrorResponse } from "@inrupt/solid-client-errors";
 
 const response = await fetch(url, options);
@@ -77,7 +76,7 @@ if (response.status !== 200) {
   throw handleErrorResponse(
     response,
     responseBody,
-    "application error message"
+    "application error message",
   );
 }
 ```
@@ -85,36 +84,36 @@ if (response.status !== 200) {
 The specific error type corresponds to the HTTP status code in the response, each of
 which implements the `WithProblemDetails` type.
 
-* 400: `BadRequestError`
-* 401: `UnauthorizedError`
-* 403: `ForbiddenError`
-* 404: `NotFoundError`
-* 405: `MethodNotAllowedError`
-* 406: `NotAcceptableError`
-* 409: `ConflictError`
-* 410: `GoneError`
-* 412: `PreconditionFailedError`
-* 415: `UnsupportedMediaTypeError`
-* 429: `TooManyRequestsError`
-* 500: `InternalServerError`
+- 400: `BadRequestError`
+- 401: `UnauthorizedError`
+- 403: `ForbiddenError`
+- 404: `NotFoundError`
+- 405: `MethodNotAllowedError`
+- 406: `NotAcceptableError`
+- 409: `ConflictError`
+- 410: `GoneError`
+- 412: `PreconditionFailedError`
+- 415: `UnsupportedMediaTypeError`
+- 429: `TooManyRequestsError`
+- 500: `InternalServerError`
 
 Each error includes a `problemDetails` field with the following properties:
 
-* `type: URL`: The specific error type. By default, this is `about:blank`.
-* `title: string`: A short description of the problem.
-* `status: number`: The error response status code.
-* `detail?: string`: A longer description of the problem.
-* `instance?: URL`: A unique URL identifying the problem occurrence.
+- `type: URL`: The specific error type. By default, this is `about:blank`.
+- `title: string`: A short description of the problem.
+- `status: number`: The error response status code.
+- `detail?: string`: A longer description of the problem.
+- `instance?: URL`: A unique URL identifying the problem occurrence.
 
 Consumers of these errors may handle the `ProblemDetails` data in the following way:
 
-```
-
+```javascript
 const res = await getFile(url, options).catch((err) => {
-
   const problems = err.problemDetails;
-  const header = document.createElement("h2")
-  header.appendChild(document.createTextNode(`${ problems.status } ${ problems.title }`));
+  const header = document.createElement("h2");
+  header.appendChild(
+    document.createTextNode(`${problems.status} ${problems.title}`),
+  );
 
   const el = document.getElementById("error");
   el.appendChild(header);
@@ -130,9 +129,7 @@ const res = await getFile(url, options).catch((err) => {
     instance.appendChild(document.createTextNode(problem.instance));
     el.appendChild(instance);
   }
-
 });
-
 ```
 
 ## Documentation
