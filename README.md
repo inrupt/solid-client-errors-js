@@ -108,28 +108,16 @@ Each error includes a `problemDetails` field with the following properties:
 Consumers of these errors may handle the `ProblemDetails` data in the following way:
 
 ```javascript
-const res = await getFile(url, options).catch((err) => {
-  const problems = err.problemDetails;
-  const header = document.createElement("h2");
-  header.appendChild(
-    document.createTextNode(`${problems.status} ${problems.title}`),
-  );
-
-  const el = document.getElementById("error");
-  el.appendChild(header);
-
-  if (problems.detail) {
-    const message = document.createElement("p");
-    message.appendChild(document.createTextNode(problems.detail));
-    el.appendChild(message);
-  }
-
-  if (problems.instance) {
-    const instance = document.createElement("p");
-    instance.appendChild(document.createTextNode(problem.instance));
-    el.appendChild(instance);
-  }
-});
+const res = await getFile(url, options)
+  .then((file) => { /* Do something after a successful request */ }
+  .catch((err) => {
+    if (hasProblemDetails(err)) {
+      const problems = err.problemDetails;
+      /* Do something with the details of the failed request */
+    } else {
+      /* Do something with a generic error message */
+    }
+  });
 ```
 
 ## Documentation
