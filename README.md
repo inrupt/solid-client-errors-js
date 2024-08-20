@@ -57,15 +57,73 @@ forum is a good place to meet the rest of the community.
 ## Bugs and Feature Requests
 
 - For public feedback, bug reports, and feature requests please file an issue
-  via [GitHub](https://github.com/inrupt/solid-client-access-grants-js/issues/).
+  via [GitHub](https://github.com/inrupt/solid-client-errors-js/issues/).
 - For non-public feedback or support inquiries please use the
   [Inrupt Service Desk](https://inrupt.atlassian.net/servicedesk).
+
+## Examples
+
+Integrators of this library will generally use the following pattern to throw
+a subclass of `ClientHttpError`, corresponding to the response status.
+
+```javascript
+import { handleErrorResponse } from "@inrupt/solid-client-errors";
+
+const response = await fetch(url, options);
+
+if (response.status !== 200) {
+  const responseBody = await response.text();
+  throw handleErrorResponse(
+    response,
+    responseBody,
+    "application error message",
+  );
+}
+```
+
+The specific error type corresponds to the HTTP status code in the response, each of
+which implements the `WithProblemDetails` type.
+
+- 400: `BadRequestError`
+- 401: `UnauthorizedError`
+- 403: `ForbiddenError`
+- 404: `NotFoundError`
+- 405: `MethodNotAllowedError`
+- 406: `NotAcceptableError`
+- 409: `ConflictError`
+- 410: `GoneError`
+- 412: `PreconditionFailedError`
+- 415: `UnsupportedMediaTypeError`
+- 429: `TooManyRequestsError`
+- 500: `InternalServerError`
+
+Each error includes a `problemDetails` field with the following properties:
+
+- `type: URL`: The specific error type. By default, this is `about:blank`.
+- `title: string`: A short description of the problem.
+- `status: number`: The error response status code.
+- `detail?: string`: A longer description of the problem.
+- `instance?: URL`: A unique URL identifying the problem occurrence.
+
+Consumers of these errors may handle the `ProblemDetails` data in the following way:
+
+```javascript
+const res = await getFile(url, options)
+  .then((file) => { /* Do something after a successful request */ }
+  .catch((err) => {
+    if (hasProblemDetails(err)) {
+      const problems = err.problemDetails;
+      /* Do something with the details of the failed request */
+    } else {
+      /* Do something with a generic error message */
+    }
+  });
+```
 
 ## Documentation
 
 - [Inrupt Solid Javascript Client Libraries](https://docs.inrupt.com/developer-tools/javascript/client-libraries/)
 - [Homepage](https://docs.inrupt.com/)
-- [Examples](./examples)
 - [Security policy and vulnerability reporting](./SECURITY.md)
 
 # Changelog
