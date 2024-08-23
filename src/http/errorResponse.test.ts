@@ -40,4 +40,9 @@ describe("hasErrorResponse", () => {
   it("returns false for an object not having an errorResponse entry", () => {
     expect(hasErrorResponse(new Error())).toBe(false);
   });
+
+  it("returns false for an object having a null errorResponse entry", () => {
+    const e = Object.assign(new Error(), { errorResponse: null });
+    expect(hasErrorResponse(e)).toBe(false);
+  });
 });

@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 ## Unreleased changes
 
+### Bugfix
+
+- `hasErrorResponse` and `hasProblemDetails` now check of `undefined` and `null`, preventing runtime errors.
+
 ### New Features
 
 - Node 22 is now supported

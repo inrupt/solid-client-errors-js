@@ -122,7 +122,13 @@ function isProblemDetails(
 export function hasProblemDetails(
   error: Error | WithProblemDetails,
 ): error is WithProblemDetails {
-  return isProblemDetails((error as WithProblemDetails).problemDetails);
+  const { problemDetails } = error as WithProblemDetails;
+  return (
+    typeof problemDetails === "object" &&
+    // typeof null returns "object".
+    problemDetails !== null &&
+    isProblemDetails(problemDetails)
+  );
 }
 
 function asUrl(url: string | undefined, base: string): URL | undefined {
