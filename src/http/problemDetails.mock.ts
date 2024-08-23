@@ -36,9 +36,9 @@ export function mockProblemDetails({
 }): WithProblemDetails {
   return {
     problemDetails: {
-      type: type === null ? undefined : (type ?? DEFAULT_TYPE),
-      status: status === null ? undefined : (status ?? 400),
-      title: title === null ? undefined : (title ?? "Bad Request"),
+      type: type === null ? undefined : type ?? DEFAULT_TYPE,
+      status: status === null ? undefined : status ?? 400,
+      title: title === null ? undefined : title ?? "Bad Request",
       detail,
       instance,
     },

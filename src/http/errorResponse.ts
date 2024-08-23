@@ -87,8 +87,10 @@ function isErrorResponse(
 export function hasErrorResponse(
   error: Error | WithErrorResponse,
 ): error is WithErrorResponse {
-  if (typeof (error as WithErrorResponse).response !== "object") {
-    return false;
-  }
-  return isErrorResponse((error as WithErrorResponse).response);
+  const { response } = error as WithErrorResponse;
+  return (
+    typeof response === "object" &&
+    response !== null &&
+    isErrorResponse(response)
+  );
 }

@@ -26,9 +26,19 @@ describe("hasProblemDetails", () => {
   it("validates a correct problem details", () => {
     expect(hasProblemDetails(mockProblemDetails({}))).toBe(true);
   });
+
   it("does not validate a problem details missing required fields", () => {
     expect(hasProblemDetails(mockProblemDetails({ type: null }))).toBe(false);
     expect(hasProblemDetails(mockProblemDetails({ title: null }))).toBe(false);
     expect(hasProblemDetails(mockProblemDetails({ status: null }))).toBe(false);
+  });
+
+  it("does not validate a missing problem details", () => {
+    expect(hasProblemDetails(new Error())).toBe(false);
+  });
+
+  it("does not validate a null problem details", () => {
+    const e = Object.assign(new Error(), { problemDetails: null });
+    expect(hasProblemDetails(e)).toBe(false);
   });
 });

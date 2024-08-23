@@ -38,13 +38,12 @@ export function mockErrorResponse({
 }): WithErrorResponse {
   return {
     response: {
-      ok: ok === null ? undefined : (ok ?? false),
-      body: body === null ? undefined : (body ?? "Some response body"),
-      status: status === null ? undefined : (status ?? 400),
-      statusText:
-        statusText === null ? undefined : (statusText ?? "Bad Request"),
-      url: url === null ? undefined : (url ?? "https://example.org/resource"),
-      headers: headers === null ? undefined : (headers ?? new Headers()),
+      ok: ok === null ? undefined : ok ?? false,
+      body: body === null ? undefined : body ?? "Some response body",
+      status: status === null ? undefined : status ?? 400,
+      statusText: statusText === null ? undefined : statusText ?? "Bad Request",
+      url: url === null ? undefined : url ?? "https://example.org/resource",
+      headers: headers === null ? undefined : headers ?? new Headers(),
     },
     // The type assertion allows us to create invalid error
     // responses for unit tests purpose.
