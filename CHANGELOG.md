@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 ## Unreleased changes
 
+## [0.0.2](https://github.com/inrupt/solid-client-errors-js/releases/tag/v0.0.2) - 2024-08-27
+
 ### Bugfix
 
 - `hasErrorResponse` and `hasProblemDetails` now check of `undefined` and `null`, preventing runtime errors.
