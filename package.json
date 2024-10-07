@@ -55,7 +55,7 @@
     "@typhonjs-typedoc/ts-lib-docs": "^2024.9.18",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.1",
-    "eslint-config-next": "^14.2.13",
+    "eslint-config-next": "^14.2.14",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jest": "^28.8.3",
     "eslint-plugin-playwright": "^1.6.2",
