@@ -51,7 +51,7 @@
     "@inrupt/jest-jsdom-polyfills": "^3.2.4",
     "@inrupt/solid-client-authn-node": "^2.2.7",
     "@playwright/test": "^1.48.2",
-    "@typescript-eslint/eslint-plugin": "^8.13.0",
+    "@typescript-eslint/eslint-plugin": "^8.14.0",
     "@typhonjs-typedoc/ts-lib-docs": "^2024.9.18",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.1",
