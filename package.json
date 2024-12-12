@@ -53,7 +53,7 @@
     "@playwright/test": "^1.49.0",
     "@typescript-eslint/eslint-plugin": "^8.16.0",
     "@typhonjs-typedoc/ts-lib-docs": "^2024.9.18",
-    "dotenv": "^16.4.5",
+    "dotenv": "^16.4.7",
     "eslint": "^8.57.1",
     "eslint-config-next": "^15.0.3",
     "eslint-plugin-import": "^2.31.0",
