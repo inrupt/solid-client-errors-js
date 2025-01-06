@@ -10,16 +10,13 @@ jobs:
   e2e-browser:
     # Ensure we timeout reasonably quickly:
     timeout-minutes: 30
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     environment:
       name: ${{ matrix.environment-name }}
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
-        # Available OS's: https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners
-        os: [ubuntu-latest, windows-latest]
-        # PodSpaces doesn't support error descriptions yet.
-        environment-name: ["ESS Dev-2-3"]
+        environment-name: ["ESS Dev-2-3", "ESS PodSpaces"]
         experimental: [false]
 
     steps:
