@@ -19,6 +19,8 @@
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+"use client";
+
 // Disabling the following prevents from having to install before linting from
 // the root.
 // eslint-disable-next-line import/no-unresolved
@@ -36,7 +38,7 @@ import {
   TESTID_OPENID_PROVIDER_INPUT,
   TESTID_SESSION_STATUS,
 } from "@inrupt/internal-playwright-testids";
-import ProblemDetailsClient from "../problemDetails";
+import ProblemDetailsClient from "../components/problemDetails";
 
 const REDIRECT_URL = window.location.href;
 const APP_NAME = "Problem Details error client browser-based tests app";
