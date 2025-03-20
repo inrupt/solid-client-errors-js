@@ -50,19 +50,18 @@ export default {
       ...baseConfig,
       displayName: "browser",
       testEnvironment: "jsdom",
-      testPathIgnorePatterns: ["e2e", "node.test.ts"],
+      testPathIgnorePatterns: ["e2e"],
     },
     {
       ...baseConfig,
       displayName: "node",
       testEnvironment: "node",
-      testPathIgnorePatterns: ["e2e", "browser.test.ts"],
+      testPathIgnorePatterns: ["e2e"],
     },
-    // Commented out until we have end-to-end
     {
       ...baseConfig,
-      testEnvironment: "node",
       displayName: "e2e-node",
+      testEnvironment: "node",
       testRegex: "e2e/node/.*.test.ts",
       setupFiles: ["<rootDir>/e2e/node/jest.setup.ts"],
       // don't load the polyfills
