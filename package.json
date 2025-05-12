@@ -49,7 +49,7 @@
     "@inrupt/internal-playwright-helpers": "^3.2.7",
     "@inrupt/internal-test-env": "^3.2.6",
     "@inrupt/jest-jsdom-polyfills": "^3.2.7",
-    "@inrupt/solid-client-authn-node": "^2.4.1",
+    "@inrupt/solid-client-authn-node": "^2.5.0",
     "@playwright/test": "^1.52.0",
     "@typescript-eslint/eslint-plugin": "^8.32.0",
     "@typhonjs-typedoc/ts-lib-docs": "^2024.12.25",
