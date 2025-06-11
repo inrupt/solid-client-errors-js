@@ -19,7 +19,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node-version: ["22.x", "20.x", "18.x"]
+        node-version: ["22.x", "20.x"]
         environment-name: ["ESS PodSpaces", "ESS Dev-2-3"]
         experimental: [false]
     steps:
