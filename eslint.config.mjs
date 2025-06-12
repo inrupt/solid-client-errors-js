@@ -21,10 +21,12 @@
 // SOFTWARE.
 //
 
-import inruptCfg from "@inrupt/eslint-config-base";
+import inruptCfg, { ignoreTypedLinting } from "@inrupt/eslint-config-base";
 import next from "@next/eslint-plugin-next";
 
 import { defineConfig } from "eslint/config";
+
+ignoreTypedLinting(["jest.config.ts", "playwright.config.ts"]);
 
 export default defineConfig([
   inruptCfg,
