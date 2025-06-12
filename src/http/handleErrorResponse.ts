@@ -1,50 +1,61 @@
+// MIT License
 //
-// Copyright Inrupt Inc.
+// Copyright (c) Inrupt
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal in
-// the Software without restriction, including without limitation the rights to use,
-// copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
-// Software, and to permit persons to whom the Software is furnished to do so,
-// subject to the following conditions:
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 //
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
 //
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
-// PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-// SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
 //
+
 import { ClientHttpError } from "./httpError";
-import BadRequestError, {
+import {
+  BadRequestError,
   BAD_REQUEST_STATUS,
 } from "./wellKnown/badRequestError";
-import ConflictError, { CONFLICT_STATUS } from "./wellKnown/conflictError";
-import ForbiddenError, { FORBIDDEN_STATUS } from "./wellKnown/forbiddenError";
-import GoneError, { GONE_STATUS } from "./wellKnown/goneError";
-import InternalServerError, {
+import { ConflictError, CONFLICT_STATUS } from "./wellKnown/conflictError";
+import { ForbiddenError, FORBIDDEN_STATUS } from "./wellKnown/forbiddenError";
+import { GoneError, GONE_STATUS } from "./wellKnown/goneError";
+import {
+  InternalServerError,
   INTERNAL_SERVER_ERROR_STATUS,
 } from "./wellKnown/internalServerError";
-import MethodNotAllowedError, {
+import {
+  MethodNotAllowedError,
   METHOD_NOT_ALLOWED_STATUS,
 } from "./wellKnown/methodNotAllowedError";
-import NotAcceptableError, {
+import {
+  NotAcceptableError,
   NOT_ACCEPTABLE_STATUS,
 } from "./wellKnown/notAcceptableError";
-import NotFoundError, { NOT_FOUND_STATUS } from "./wellKnown/notFoundError";
-import PreconditionFailedError, {
+import { NotFoundError, NOT_FOUND_STATUS } from "./wellKnown/notFoundError";
+import {
+  PreconditionFailedError,
   PRECONDITION_FAILED_STATUS,
 } from "./wellKnown/preconditionFailedError";
-import TooManyRequestsError, {
+import {
+  TooManyRequestsError,
   TOO_MANY_REQUESTS_STATUS,
 } from "./wellKnown/tooManyRequestsError";
-import UnauthorizedError, {
+import {
+  UnauthorizedError,
   UNAUTHORIZED_STATUS,
 } from "./wellKnown/unauthorizedError";
-import UnsupportedMediaTypeError, {
+import {
+  UnsupportedMediaTypeError,
   UNSUPPORTED_MEDIA_TYPE_STATUS,
 } from "./wellKnown/unsupportedMediaTypeError";
 
