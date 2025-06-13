@@ -21,31 +21,29 @@
 // SOFTWARE.
 //
 
-import { describe, it, expect } from "@jest/globals";
-import { mockResponse } from "./wellKnown.mock";
-import { UnauthorizedError, UNAUTHORIZED_STATUS } from "./unauthorizedError";
+import inruptCfg, { ignoreTypedLinting } from "@inrupt/eslint-config-base";
+import next from "@next/eslint-plugin-next";
 
-describe("UnauthorizedError", () => {
-  it("builds an Error object when provided an response with status 401", () => {
-    const response = mockResponse({ status: UNAUTHORIZED_STATUS });
-    const e = new UnauthorizedError(
-      response,
-      "Some response body",
-      "Some error message",
-    );
-    expect(e.response.status).toBe(UNAUTHORIZED_STATUS);
-  });
+import { defineConfig } from "eslint/config";
 
-  it("throws when provided a status code not equal to 401", () => {
-    const response = mockResponse({ status: 499 });
-    expect(() => {
-      // The object is built to check an error is thrown.
+ignoreTypedLinting(["jest.config.ts", "playwright.config.ts"]);
 
-      new UnauthorizedError(
-        response,
-        "Some response body",
-        "Some error message",
-      );
-    }).toThrow();
-  });
-});
+export default defineConfig([
+  inruptCfg,
+  {
+    plugins: {
+      "@next/next": next,
+    },
+    rules: {
+      ...next.configs.recommended.rules,
+      ...next.configs["core-web-vitals"].rules,
+    },
+    files: ["e2e/browser/test-app/"],
+  },
+  {
+    rules: {
+      "import/no-unresolved": "off",
+    },
+    files: ["**/e2e/browser/test-app/**"],
+  },
+]);
