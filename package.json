@@ -43,11 +43,11 @@
     "url": "https://github.com/inrupt/solid-client-errors-js.git"
   },
   "devDependencies": {
-    "@inrupt/base-rollup-config": "^4.0.3",
-    "@inrupt/eslint-config-base": "^4.0.3",
-    "@inrupt/internal-playwright-helpers": "^4.0.3",
+    "@inrupt/base-rollup-config": "^4.0.4",
+    "@inrupt/eslint-config-base": "^4.0.4",
+    "@inrupt/internal-playwright-helpers": "^4.0.4",
     "@inrupt/internal-test-env": "^4.0.3",
-    "@inrupt/jest-jsdom-polyfills": "^4.0.3",
+    "@inrupt/jest-jsdom-polyfills": "^4.0.4",
     "@inrupt/solid-client-authn-node": "^2.5.0",
     "@playwright/test": "^1.53.2",
     "@typhonjs-typedoc/ts-lib-docs": "^2024.12.25",
