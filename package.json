@@ -55,7 +55,7 @@
     "eslint": "^9.31.0",
     "eslint-config-next": "^15.4.2",
     "jest": "^30.0.4",
-    "jest-environment-jsdom": "^30.0.4",
+    "jest-environment-jsdom": "^30.0.5",
     "rollup": "^4.45.1",
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
