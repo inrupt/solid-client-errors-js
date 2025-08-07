@@ -57,7 +57,7 @@
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
     "rollup": "^4.45.1",
-    "ts-jest": "^29.4.0",
+    "ts-jest": "^29.4.1",
     "ts-node": "^10.9.2",
     "typedoc": "^0.28.9",
     "typedoc-plugin-markdown": "^3.17.1",
