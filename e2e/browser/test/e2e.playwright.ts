@@ -39,7 +39,7 @@ async function expectProblemDetails(
   page: Page,
   status: string,
   title: string,
-  detailContains: string,
+  detailContains: string | RegExp,
 ) {
   // The Problem Details error should be displayed.
   await expect(page.locator("span[data-testid=pdType]")).toContainText(
@@ -71,7 +71,7 @@ test("401 problem details error", async ({ page, auth }) => {
     page,
     "401",
     "Unauthorized",
-    "HTTP 401 Unauthorized",
+    /The server application intentionally responded with an HTTP error response status.|HTTP 401 Unauthorized/,
   );
 });
 
@@ -138,7 +138,7 @@ test("403 problem details error", async ({ page, auth }) => {
     page,
     "403",
     "Forbidden",
-    "Access has been denied",
+    /The server application intentionally responded with an HTTP error response status.|Access has been denied/,
   );
 });
 
@@ -156,6 +156,6 @@ test("405 problem details error", async ({ page, auth }) => {
     page,
     "405",
     "Method Not Allowed",
-    "No resource method found",
+    /The server application intentionally responded with an HTTP error response status.|No resource method found/,
   );
 });
