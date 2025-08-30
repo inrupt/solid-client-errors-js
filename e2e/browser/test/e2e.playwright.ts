@@ -71,7 +71,7 @@ test("401 problem details error", async ({ page, auth }) => {
     page,
     "401",
     "Unauthorized",
-    "The server application intentionally responded with an HTTP error response status",
+    "HTTP 401 Unauthorized",
   );
 });
 
@@ -138,7 +138,7 @@ test("403 problem details error", async ({ page, auth }) => {
     page,
     "403",
     "Forbidden",
-    "The server application intentionally responded with an HTTP error response status.",
+    "Access has been denied",
   );
 });
 
@@ -156,6 +156,6 @@ test("405 problem details error", async ({ page, auth }) => {
     page,
     "405",
     "Method Not Allowed",
-    "The server application intentionally responded with an HTTP error response status.",
+    "No resource method found",
   );
 });
