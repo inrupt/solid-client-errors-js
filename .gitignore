@@ -129,7 +129,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-docs/api/source/
+docs/api/
 
 # Playwright test results
 test-results/

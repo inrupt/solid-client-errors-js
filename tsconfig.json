@@ -15,25 +15,6 @@
     // Advanced Options
     "stripInternal": true
   },
-  "typedocOptions": {
-    "out": "docs/api/source/api",
-    "hideInPageTOC": true,
-    "entryPoints": [],
-    "exclude": [
-      "node_modules/**",
-      "**/*.test.ts",
-      // End-to-end tests:
-      "e2e/**"
-    ],
-    "theme": "markdown",
-    "readme": "none",
-    "entryDocument": "index.rst",
-    "plugin": [
-      "typedoc-plugin-markdown",
-      "@typhonjs-typedoc/ts-lib-docs/typedoc/ts-links/dom/2023",
-      "@typhonjs-typedoc/ts-lib-docs/typedoc/ts-links/esm/2023"
-    ]
-  },
   "include": ["src/**/*.ts"],
   "exclude": [
     "**/node_modules",
