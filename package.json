@@ -49,7 +49,7 @@
     "@inrupt/internal-test-env": "^4.0.3",
     "@inrupt/jest-jsdom-polyfills": "^4.0.4",
     "@inrupt/solid-client-authn-node": "^2.5.0",
-    "@playwright/test": "^1.55.0",
+    "@playwright/test": "^1.55.1",
     "@typhonjs-typedoc/ts-lib-docs": "^2024.12.25",
     "dotenv": "^17.2.2",
     "eslint": "^9.35.0",
