@@ -53,7 +53,7 @@
     "@typhonjs-typedoc/ts-lib-docs": "^2024.12.25",
     "dotenv": "^17.3.1",
     "eslint": "^9.39.4",
-    "eslint-config-next": "^16.1.6",
+    "eslint-config-next": "^16.2.1",
     "jest": "^30.3.0",
     "jest-environment-jsdom": "^30.3.0",
     "rollup": "^4.60.0",
