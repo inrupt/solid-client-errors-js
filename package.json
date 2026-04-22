@@ -46,7 +46,7 @@
     "@inrupt/base-rollup-config": "^4.1.0",
     "@inrupt/eslint-config-base": "^4.1.0",
     "@inrupt/internal-playwright-helpers": "^4.1.0",
-    "@inrupt/internal-test-env": "^4.0.3",
+    "@inrupt/internal-test-env": "^4.1.0",
     "@inrupt/jest-jsdom-polyfills": "^4.1.0",
     "@inrupt/solid-client-authn-node": "^4.0.0",
     "@playwright/test": "^1.59.1",
