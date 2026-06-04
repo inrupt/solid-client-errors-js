@@ -65,7 +65,7 @@ const ENV = getNodeTestingEnvironment();
 const { owner } = ENV.clientCredentials;
 
 describe(`End-to-end error description test for ${ENV.environment}`, () => {
-  let authenticatedSession: Awaited<ReturnType<getAuthenticatedSession>>;
+  let authenticatedSession: Awaited<ReturnType<typeof getAuthenticatedSession>>;
 
   beforeEach(async () => {
     authenticatedSession = await getAuthenticatedSession(ENV);
