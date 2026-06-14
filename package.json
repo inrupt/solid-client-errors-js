@@ -24,6 +24,7 @@
   },
   "homepage": "https://docs.inrupt.com/client-libraries/solid-client-errors-js/",
   "bugs": "https://github.com/inrupt/solid-client-errors-js/issues",
+  "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
