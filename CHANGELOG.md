@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 ## Unreleased changes
 
+## [0.0.4](https://github.com/inrupt/solid-client-errors-js/releases/tag/v0.0.4) - 2026-06-16
+
 ### Breaking Changes
 
 - Support for Node.js v20.x has been dropped as that version has reached end-of-life.
