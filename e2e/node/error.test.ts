@@ -34,10 +34,10 @@ import { config } from "dotenv";
 import { join } from "path";
 
 import {
+  getAuthenticatedSession,
   getNodeTestingEnvironment,
   getPodRoot,
 } from "@inrupt/internal-test-env";
-import { Session } from "@inrupt/solid-client-authn-node";
 
 import {
   NotAcceptableError,
@@ -65,9 +65,10 @@ const ENV = getNodeTestingEnvironment();
 const { owner } = ENV.clientCredentials;
 
 describe(`End-to-end error description test for ${ENV.environment}`, () => {
-  const authenticatedSession = new Session({ keepAlive: false });
+  let authenticatedSession: Awaited<ReturnType<typeof getAuthenticatedSession>>;
 
   beforeEach(async () => {
+    authenticatedSession = await getAuthenticatedSession(ENV);
     await authenticatedSession.login({
       clientId: owner.id,
       clientSecret: owner.secret,
