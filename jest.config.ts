@@ -24,7 +24,6 @@
 import type { Config } from "jest";
 import { createDefaultPreset } from "ts-jest";
 
-
 type ArrayElement<MyArray> = MyArray extends Array<infer T> ? T : never;
 
 const defaultPreset = createDefaultPreset();
@@ -37,7 +36,7 @@ const baseConfig: ArrayElement<NonNullable<Config["projects"]>> = {
   testRegex: "/src/.*\\.test\\.ts$",
   clearMocks: true,
   injectGlobals: false,
-    transform: {
+  transform: {
     ...defaultPreset.transform,
     // [\\\\/] expands to [\\/], which makes the regex Windows-compatible.
     // jose v6 ships as ESM only, and may be nested in a dependency's own
