@@ -4,7 +4,8 @@ updates:
   - package-ecosystem: "github-actions"
     # For GitHub Actions, setting the directory to / will check for workflow
     # files in .github/workflows.
-    directory: "/"
+    directories:
+      - "/"
     schedule:
       interval: "weekly"
   - package-ecosystem: npm
@@ -29,3 +30,18 @@ updates:
       external-types:
         patterns:
           - "@types/*"
+
+  - package-ecosystem: npm
+    directory: "/e2e/browser/test-app/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    groups:
+      internal-tooling:
+        patterns:
+          - "@inrupt/internal-*"
+      external-types:
+        patterns:
+          - "@types/*"
+
+
