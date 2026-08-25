@@ -42,7 +42,6 @@ import {
 } from "@inrupt/internal-playwright-testids";
 import ProblemDetailsClient from "../components/problemDetails";
 
-const REDIRECT_URL = window.location.href;
 const APP_NAME = "Problem Details error client browser-based tests app";
 const DEFAULT_ISSUER = "https://login.inrupt.com/";
 
@@ -59,7 +58,9 @@ export default function AppContainer() {
       // Login will redirect the user away so that they can log in the OIDC issuer,
       // and back to the provided redirect URL (which should be controlled by your app).
       await login({
-        redirectUrl: REDIRECT_URL,
+        // Read at call time: this module is prerendered on the server, where
+        // `window` is undefined.
+        redirectUrl: window.location.href,
         oidcIssuer: issuer,
         clientName: APP_NAME,
       });
