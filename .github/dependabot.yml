@@ -30,18 +30,3 @@ updates:
       external-types:
         patterns:
           - "@types/*"
-
-  - package-ecosystem: npm
-    directory: "/e2e/browser/test-app/"
-    schedule:
-      interval: weekly
-    open-pull-requests-limit: 10
-    groups:
-      internal-tooling:
-        patterns:
-          - "@inrupt/internal-*"
-      external-types:
-        patterns:
-          - "@types/*"
-
-
