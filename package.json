@@ -16,7 +16,6 @@
     "lint:fix": "npm run lint:eslint -- --fix",
     "lint:check": "npm run lint:eslint",
     "lint:eslint": "eslint --config eslint.config.mjs .",
-    "prepublishOnly": "npm run build",
     "test": "jest --ignoreProjects e2e-node --passWithNoTests",
     "test:unit:browser": "jest --selectProjects browser",
     "test:unit:node": "jest --selectProjects node",
