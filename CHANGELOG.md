@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 ## Unreleased changes
 
+### Patch changes
+
+- NodeJS 26 is now officially supported.
+
 ## [0.0.4](https://github.com/inrupt/solid-client-errors-js/releases/tag/v0.0.4) - 2026-06-16
 
 ### Breaking Changes
